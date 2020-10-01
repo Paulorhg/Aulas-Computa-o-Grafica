@@ -1,0 +1,126 @@
+/// <reference path="/babylon.d.ts" />
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Babylon.js sample code</title>
+
+        <!-- Babylon.js -->
+        <script src="https://code.jquery.com/pep/0.4.2/pep.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+        <script src="https://preview.babylonjs.com/ammo.js"></script>
+        <script src="https://preview.babylonjs.com/cannon.js"></script>
+        <script src="https://preview.babylonjs.com/Oimo.js"></script>
+        <script src="https://preview.babylonjs.com/earcut.min.js"></script>
+        <script src="https://preview.babylonjs.com/babylon.js"></script>
+        <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+        <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+        <script src="https://preview.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+        <script src="https://preview.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
+        <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
+        <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
+        <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+        <script><reference path = "babylon.d.ts"/></script>
+
+        <style>
+            html, body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            #renderCanvas {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+            }
+        </style>
+    </head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+
+        var canvas = document.getElementById("renderCanvas");
+
+        var engine = null;
+        var scene = null;
+        var sceneToRender = null;
+        var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true }); };
+        var createScene = function () {
+        // This creates a basic Babylon Scene object (non-mesh)
+        var scene = new BABYLON.Scene(engine);
+
+        // This creates and positions a free camera (non-mesh)
+        var camera = new BABYLON.ArcRotateCamera("camera1",0,5,30, new BABYLON.Vector3(0, 5, -10), scene);
+
+        // This targets the camera to scene origin
+        camera.setTarget(BABYLON.Vector3.Zero());
+
+        // This attaches the camera to the canvas
+        camera.attachControl(canvas, true);
+
+        // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+        var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+
+        // Default intensity is 1. Let's dim the light a small amount
+        light.intensity = 0.7;
+
+        // Our built-in 'sphere' shape.
+        var cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder",{height: 5, diameter:0.7}, scene);
+        cylinder.position.y = 2.5;
+        //var seila = BABYLON.MeshBuilder.CreateDecal
+        var square2 = BABYLON.MeshBuilder.CreateBox("square2",{height: 3.5, width: 3, depth:1}, scene);
+        square2.position.y = 1.5;
+        var square3 = BABYLON.MeshBuilder.CreateBox("square3",{height: 2.5, width: 5, depth:1}, scene);
+        square3.position.y = 1;
+        var square4 = BABYLON.MeshBuilder.CreateBox("square2",{height: 3.5, width: 1, depth:3}, scene);
+        square4.position.y = 1.5;
+        var square5 = BABYLON.MeshBuilder.CreateBox("square3",{height: 2.5, width: 1, depth:5}, scene);
+        square5.position.y = 1;
+        var circle = BABYLON.MeshBuilder.CreateSphere("circle", {diameterX: 0, diameterY: 2, diameterZ: 0}, scene);
+        circle.position.y = 10;
+
+        var wall2 = BABYLON.MeshBuilder.CreateBox("wall2",{height: 3, width: 15, depth:1}, scene);
+        wall2.position.z = 7.5;
+
+        var wall3 = BABYLON.MeshBuilder.CreateBox("wall3",{height: 3, width: 1, depth:15}, scene);
+        wall3.position.x = 7.5;
+
+        var wall4 = BABYLON.MeshBuilder.CreateBox("wall4",{height: 3, width: 1, depth:15}, scene);
+        wall4.position.x = -7.5;
+
+        var wall1 = BABYLON.MeshBuilder.CreateBox("wall1",{height: 3, width: 15, depth:1}, scene);
+        wall1.position.z = -7.5;
+        // Our built-in 'ground' shape.
+        var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 15, height: 15}, scene);
+
+        return scene;
+
+    };
+    var engine;
+    try {
+    engine = createDefaultEngine();
+    } catch(e) {
+    console.log("the available createEngine function failed. Creating the default engine instead");
+    engine = createDefaultEngine();
+    }
+        if (!engine) throw 'engine should not be null.';
+        scene = createScene();;
+        sceneToRender = scene
+
+        engine.runRenderLoop(function () {
+            if (sceneToRender) {
+                sceneToRender.render();
+            }
+        });
+
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+    </script>
+</body>
+</html>
