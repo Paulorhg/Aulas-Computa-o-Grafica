@@ -1,4 +1,3 @@
-/// <reference path="/babylon.d.ts" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +20,6 @@
         <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
         <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
         <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
-        <script><reference path = "babylon.d.ts"/></script>
 
         <style>
             html, body {
@@ -54,6 +52,9 @@
         var scene = new BABYLON.Scene(engine);
 
         // This creates and positions a free camera (non-mesh)
+        var scene = new BABYLON.Scene(engine);
+
+        // This creates and positions a free camera (non-mesh)
         var camera = new BABYLON.ArcRotateCamera("camera1",0,5,30, new BABYLON.Vector3(0, 5, -10), scene);
 
         // This targets the camera to scene origin
@@ -80,8 +81,31 @@
         square4.position.y = 1.5;
         var square5 = BABYLON.MeshBuilder.CreateBox("square3",{height: 2.5, width: 1, depth:5}, scene);
         square5.position.y = 1;
-        var circle = BABYLON.MeshBuilder.CreateSphere("circle", {diameterX: 0, diameterY: 2, diameterZ: 0}, scene);
-        circle.position.y = 10;
+        var circle = BABYLON.MeshBuilder.CreateSphere("circle", {diameterX: 0.3, diameterY: 0.6, diameterZ: 0.3}, scene);
+        circle.position.y = 4;
+        circle.rotation.y = 2;
+
+        var circle2 = BABYLON.MeshBuilder.CreateSphere("circle2", {diameterX: 0.3, diameterY: 0.6, diameterZ: 0.3}, scene);
+        circle2.position.y = 3;
+        circle2.position.x = 7
+        circle2.id = "sobe";
+
+        var center1 = new BABYLON.Mesh("center1", scene);
+        center1.position = new BABYLON.Vector3(3,4,0)
+        center1.addChild(circle);
+        center1.id = "centerZ";
+
+        var centerBird1 = createBird();
+        centerBird1.rotation.y = -0.2;
+        centerBird1.id = "centerY";
+        var centerBird2 = createBird();
+        centerBird2.rotation.y = 0.4;
+        centerBird2.id = "centerY2";
+
+        centerBird2.scaling = new BABYLON.Vector3(0.7, 0.7, 0.7);
+
+        var wall1 = BABYLON.MeshBuilder.CreateBox("wall1",{height: 3, width: 15, depth:1}, scene);
+        wall1.position.z = -7.5;
 
         var wall2 = BABYLON.MeshBuilder.CreateBox("wall2",{height: 3, width: 15, depth:1}, scene);
         wall2.position.z = 7.5;
@@ -92,14 +116,80 @@
         var wall4 = BABYLON.MeshBuilder.CreateBox("wall4",{height: 3, width: 1, depth:15}, scene);
         wall4.position.x = -7.5;
 
-        var wall1 = BABYLON.MeshBuilder.CreateBox("wall1",{height: 3, width: 15, depth:1}, scene);
-        wall1.position.z = -7.5;
         // Our built-in 'ground' shape.
         var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 15, height: 15}, scene);
-
         return scene;
-
     };
+
+    function createBird(){        
+
+        centerBird1 = new BABYLON.Mesh("centerBird1", scene);
+        centerBird1.position.y = 20;
+
+        var angle = 0;
+        var incAngle = Math.PI / 2;
+        var radius = 7.5;
+
+        for (var i = 0; i < 4; i++) {
+
+            var birdBody = BABYLON.MeshBuilder.CreateSphere("birdBody", {diameterX: 1, diameterY: 0.5, diameterZ: 0.5}, scene);
+            birdBody.id = "birdBody";
+
+            var asa1 = BABYLON.MeshBuilder.CreateBox("asa1", {height: 0.05, width: 0.4, depth: 0.6})
+            asa1.position.z = 0.5;
+            birdBody.addChild(asa1);
+
+            var asa2 = BABYLON.MeshBuilder.CreateBox("asa2", {height: 0.05, width: 0.4, depth: 0.6})
+            asa2.position.z = -0.5;
+            birdBody.addChild(asa2);
+
+            var x = Math.cos(angle) * radius;
+            var z = Math.sin(angle) * radius;
+            angle = angle + incAngle;
+
+            birdBody.position.x = x;
+            birdBody.position.z = z;
+            birdBody.position.y = 7;
+            birdBody.rotation.y = angle;
+
+            centerBird1.addChild(birdBody)
+        }
+        return centerBird1;
+    }
+    
+    function loop(){
+
+       // var dir = 0;
+
+        var sobe = scene.getMeshByID("sobe");
+       // var pos = 1;
+
+        if(sobe.position.y  >= 7)
+            sobe.translate(BABYLON.Axis.Y, -4, BABYLON.Space.LOCAL);
+        if(sobe.position.y <= 4)
+            sobe.translate(BABYLON.Axis.Y, 6, BABYLON.Space.WORLD);
+
+        //pos = pos * 1;
+
+        var centerZ = scene.getMeshByID("centerZ");
+        var inc = 1;    
+        centerZ.rotation.z -= 0.01 * inc;
+        inc = inc * 1;
+        
+    }
+
+    function loopBird(){
+        var centerY = scene.getMeshByID("centerY");
+        var inc = 1;    
+        centerY.rotation.y -= 0.01 * inc;
+        inc = inc * 1;
+
+        var centerY2 = scene.getMeshByID("centerY2");
+        var inc = 1;    
+        centerY2.rotation.y += 0.01 * inc;
+        inc = inc * 1;
+    }
+    
     var engine;
     try {
     engine = createDefaultEngine();
@@ -113,6 +203,8 @@
 
         engine.runRenderLoop(function () {
             if (sceneToRender) {
+                loop();
+                loopBird();
                 sceneToRender.render();
             }
         });
@@ -120,7 +212,7 @@
         // Resize
         window.addEventListener("resize", function () {
             engine.resize();
-        });
+    });
     </script>
 </body>
 </html>
