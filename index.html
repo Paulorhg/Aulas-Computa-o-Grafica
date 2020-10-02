@@ -70,16 +70,16 @@
         light.intensity = 0.7;
 
         // Our built-in 'sphere' shape.
-        var cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder",{height: 5, diameter:0.7}, scene);
+        var cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder",{height: 3, diameter:0.7}, scene);
         cylinder.position.y = 2.5;
         //var seila = BABYLON.MeshBuilder.CreateDecal
-        var square2 = BABYLON.MeshBuilder.CreateBox("square2",{height: 3.5, width: 3, depth:1}, scene);
+        var square2 = BABYLON.MeshBuilder.CreateBox("square2",{height: 2.5, width: 3, depth:1}, scene);
         square2.position.y = 1.5;
-        var square3 = BABYLON.MeshBuilder.CreateBox("square3",{height: 2.5, width: 5, depth:1}, scene);
+        var square3 = BABYLON.MeshBuilder.CreateBox("square3",{height: 1.5, width: 5, depth:1}, scene);
         square3.position.y = 1;
-        var square4 = BABYLON.MeshBuilder.CreateBox("square2",{height: 3.5, width: 1, depth:3}, scene);
+        var square4 = BABYLON.MeshBuilder.CreateBox("square2",{height: 2.5, width: 1, depth:3}, scene);
         square4.position.y = 1.5;
-        var square5 = BABYLON.MeshBuilder.CreateBox("square3",{height: 2.5, width: 1, depth:5}, scene);
+        var square5 = BABYLON.MeshBuilder.CreateBox("square3",{height: 1.5, width: 1, depth:5}, scene);
         square5.position.y = 1;
         var circle = BABYLON.MeshBuilder.CreateSphere("circle", {diameterX: 0.3, diameterY: 0.6, diameterZ: 0.3}, scene);
         circle.position.y = 4;
@@ -91,7 +91,7 @@
         circle2.id = "sobe";
 
         var center1 = new BABYLON.Mesh("center1", scene);
-        center1.position = new BABYLON.Vector3(3,4,0)
+        center1.position = new BABYLON.Vector3(3,3,0)
         center1.addChild(circle);
         center1.id = "centerZ";
 
