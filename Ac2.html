@@ -80,7 +80,7 @@ function CreateElement(proton, neutron, eletron, camada, ultima){
 
 function CreateHidrogenio(){
 
-    var centerX = new BABYLON.Mesh("centerX",scene);
+    var center = new BABYLON.Mesh("center",scene);
 
     var proton = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:1}, scene);
     var redMaterial = new BABYLON.StandardMaterial("myRedMaterial", scene);
@@ -106,12 +106,12 @@ function CreateHidrogenio(){
 	//Create lines 
 	var lines = BABYLON.MeshBuilder.CreateLines("lines", {points: myPoints}, scene);
 
-    centerX.addChild(proton);
-    centerX.addChild(eletron);
-    centerX.addChild(lines);
+    center.addChild(proton);
+    center.addChild(eletron);
+    center.addChild(lines);
 
-    centerX.position = new BABYLON.Vector3(0,-3,10);
-    centerX.id = "centerX";
+    center.position = new BABYLON.Vector3(0,-3,10);
+    center.id = "centerX";
 
 }
 
