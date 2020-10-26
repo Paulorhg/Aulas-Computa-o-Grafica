@@ -65,35 +65,67 @@
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
+        var light3 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(4, 2, 0), scene);
 
         // Default intensity is 1. Let's dim the light a small amount
         light.intensity = 0.7;
 
-        // Our built-in 'sphere' shape.
-        var cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder",{height: 3, diameter:0.7}, scene);
-        cylinder.position.y = 2.5;
-        //var seila = BABYLON.MeshBuilder.CreateDecal
-        var square2 = BABYLON.MeshBuilder.CreateBox("square2",{height: 2.5, width: 3, depth:1}, scene);
-        square2.position.y = 1.5;
-        var square3 = BABYLON.MeshBuilder.CreateBox("square3",{height: 1.5, width: 5, depth:1}, scene);
-        square3.position.y = 1;
-        var square4 = BABYLON.MeshBuilder.CreateBox("square2",{height: 2.5, width: 1, depth:3}, scene);
-        square4.position.y = 1.5;
-        var square5 = BABYLON.MeshBuilder.CreateBox("square3",{height: 1.5, width: 1, depth:5}, scene);
-        square5.position.y = 1;
-        var circle = BABYLON.MeshBuilder.CreateSphere("circle", {diameterX: 0.3, diameterY: 0.6, diameterZ: 0.3}, scene);
-        circle.position.y = 4;
-        circle.rotation.y = 2;
+        var yellowMaterial = new BABYLON.StandardMaterial("myYellowMaterial", scene);
+        yellowMaterial.diffuseColor = new BABYLON.Color3(1,1,0);
 
+        var greyMaterial = new BABYLON.StandardMaterial("myGreyMaterial", scene);
+        greyMaterial.diffuseColor = new BABYLON.Color3(0.4,0.4,0.4);
+        
+        light3.material = yellowMaterial;
+        // Our built-in 'sphere' shape.
+        var cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder",{height: 1.5, diameter:1}, scene);
+        cylinder.position.y = 2.5;
+        cylinder.material = greyMaterial;
+        //var seila = BABYLON.MeshBuilder.CreateDecal
+        var square1 = BABYLON.MeshBuilder.CreateBox("square2",{height: 1.5, width: 3, depth:1}, scene);
+        square1.position.y = 1.5;
+        square1.material = yellowMaterial;
+        var square2 = BABYLON.MeshBuilder.CreateBox("square3",{height: 0.5, width: 5, depth:1}, scene);
+        square2.position.y = 1;
+        square2.material = yellowMaterial;
+        var square3 = BABYLON.MeshBuilder.CreateBox("square2",{height: 1.5, width: 1, depth:3}, scene);
+        square3.position.y = 1.5;
+        square3.material = yellowMaterial;
+        var square4 = BABYLON.MeshBuilder.CreateBox("square3",{height: 0.5, width: 1, depth:5}, scene);
+        square4.position.y = 1;
+        square4.material = yellowMaterial;
+        
+/*
         var circle2 = BABYLON.MeshBuilder.CreateSphere("circle2", {diameterX: 0.3, diameterY: 0.6, diameterZ: 0.3}, scene);
         circle2.position.y = 3;
         circle2.position.x = 7
         circle2.id = "sobe";
+*/
+        var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
+        blueMaterial.diffuseColor = new BABYLON.Color3(0,0,0.8);
 
-        var center1 = new BABYLON.Mesh("center1", scene);
-        center1.position = new BABYLON.Vector3(3,3,0)
-        center1.addChild(circle);
-        center1.id = "centerZ";
+        var greenMaterial = new BABYLON.StandardMaterial("myGreenMaterial", scene);
+        greenMaterial.diffuseColor = new BABYLON.Color3(0,0.5,0.2);
+
+        
+        var water1 = createWater()
+        water1.id = "centerZ";
+
+        var water2 = createWater()
+        water2.position = new BABYLON.Vector3(0,2,3)
+        water2.rotation.y = 1.5708;
+        water2.id = "centerZ";
+
+        var water3 = createWater()
+        water3.position = new BABYLON.Vector3(0,2,-3)
+        water3.rotation.y = 1.5708;
+        water3.id = "centerZ";
+
+        var water4 = createWater()
+        water4.position = new BABYLON.Vector3(-3,2,0)
+        water4.id = "centerZ";
+
 
         var centerBird1 = createBird();
         centerBird1.rotation.y = -0.2;
@@ -106,20 +138,64 @@
 
         var wall1 = BABYLON.MeshBuilder.CreateBox("wall1",{height: 3, width: 15, depth:1}, scene);
         wall1.position.z = -7.5;
+        wall1.material = greenMaterial;
 
         var wall2 = BABYLON.MeshBuilder.CreateBox("wall2",{height: 3, width: 15, depth:1}, scene);
         wall2.position.z = 7.5;
+        wall2.material = greenMaterial;
 
         var wall3 = BABYLON.MeshBuilder.CreateBox("wall3",{height: 3, width: 1, depth:15}, scene);
         wall3.position.x = 7.5;
+        wall3.material = greenMaterial;
 
         var wall4 = BABYLON.MeshBuilder.CreateBox("wall4",{height: 3, width: 1, depth:15}, scene);
         wall4.position.x = -7.5;
+        wall4.material = greenMaterial;
 
         // Our built-in 'ground' shape.
         var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 15, height: 15}, scene);
+        ground.position.y = 0.8;
+        
+        ground.material = blueMaterial;
+
+        var ground2 = BABYLON.MeshBuilder.CreateGround("ground2", {width: 15, height: 15}, scene);
+        ground2.rotation.x = Math.PI ;
+        ground2.position.y = -1.5;
+        ground2.material = greenMaterial;
         return scene;
     };
+    
+    function createWater(){
+        var center1 = new BABYLON.Mesh("center1",scene);
+        center1.position = new BABYLON.Vector3(3,2,0)
+        
+        var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
+        blueMaterial.diffuseColor = new BABYLON.Color3(0,0,1);
+
+        var angle = 0;
+        var incAngle = Math.PI / 2;
+        var radius = 3;
+
+        for (var i = 0; i < 4; i++) {
+
+            var circle = BABYLON.MeshBuilder.CreateSphere("circle", {diameterX: 0.3, diameterY: 0.6, diameterZ: 0.3}, scene);
+            
+            circle.material = blueMaterial;
+
+            var y = Math.cos(angle) * radius;
+            var x = Math.sin(angle) * radius;
+            angle = angle + incAngle;
+
+            circle.position.y = y+2;
+            circle.position.x = x+3;
+            circle.rotation.z = angle;
+
+            center1.addChild(circle);
+
+            
+        }
+        return center1;
+    }
 
     function createBird(){        
 
@@ -130,17 +206,35 @@
         var incAngle = Math.PI / 2;
         var radius = 7.5;
 
+        var brownMaterial = new BABYLON.StandardMaterial("myBrownMaterial", scene);
+        brownMaterial.diffuseColor = new BABYLON.Color3(0.5,0.2,0.1);
+
+        var brown2Material = new BABYLON.StandardMaterial("myBrownMaterial2", scene);
+        brown2Material.diffuseColor = new BABYLON.Color3(0.3,0.2,0.1);
+
+        var blackMaterial = new BABYLON.StandardMaterial("myBlackMaterial", scene);
+        blackMaterial.diffuseColor = new BABYLON.Color3(0.1,0.1,0.1);
+
         for (var i = 0; i < 4; i++) {
 
             var birdBody = BABYLON.MeshBuilder.CreateSphere("birdBody", {diameterX: 1, diameterY: 0.5, diameterZ: 0.5}, scene);
             birdBody.id = "birdBody";
-
+            var birdHead = BABYLON.MeshBuilder.CreateSphere("birdHead", {diameter: 0.35}, scene);
+            birdHead.material = brown2Material;
+            if(i%2 != 0)
+                birdHead.position.x = 0.5;
+            else
+                birdHead.position.x = -0.5;
+            birdBody.addChild(birdHead);
+            birdBody.material = brownMaterial;
             var asa1 = BABYLON.MeshBuilder.CreateBox("asa1", {height: 0.05, width: 0.4, depth: 0.6})
             asa1.position.z = 0.5;
+            asa1.material = blackMaterial;
             birdBody.addChild(asa1);
 
             var asa2 = BABYLON.MeshBuilder.CreateBox("asa2", {height: 0.05, width: 0.4, depth: 0.6})
             asa2.position.z = -0.5;
+            asa2.material = blackMaterial;
             birdBody.addChild(asa2);
 
             var x = Math.cos(angle) * radius;
@@ -161,20 +255,23 @@
 
        // var dir = 0;
 
-        var sobe = scene.getMeshByID("sobe");
+        //var sobe = scene.getMeshByID("sobe");
        // var pos = 1;
 
-        if(sobe.position.y  >= 7)
-            sobe.translate(BABYLON.Axis.Y, -4, BABYLON.Space.LOCAL);
-        if(sobe.position.y <= 4)
-            sobe.translate(BABYLON.Axis.Y, 6, BABYLON.Space.WORLD);
+        //if(sobe.position.y  >= 7)
+        //    sobe.translate(BABYLON.Axis.Y, -4, BABYLON.Space.LOCAL);
+        //if(sobe.position.y <= 4)
+       //     sobe.translate(BABYLON.Axis.Y, 6, BABYLON.Space.WORLD);
 
         //pos = pos * 1;
 
-        var centerZ = scene.getMeshByID("centerZ");
-        var inc = 1;    
-        centerZ.rotation.z -= 0.01 * inc;
-        inc = inc * 1;
+        var centersZ = scene.getMeshesByID("centerZ");
+        var inc = 1;  
+        centersZ.forEach(function (centerZ) {
+                centerZ.rotation.z -= (0.01 * inc);
+                inc = inc * -1;
+            });
+        
         
     }
 
