@@ -65,12 +65,7 @@
     // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.7;
 
-    // Our built-in 'sphere' shape.
-    var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
-
-    // Move the sphere upward 1/2 its height
-    sphere.position.y = 1;
-
+    CreateHelio();
 
     return scene;
 };
@@ -85,9 +80,48 @@ function CreateElement(proton, neutron, eletron, camada, ultima){
 
 function CreateHelio(){
 
-    var proton = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:2}, scene);
-    
+    var center = new BABYLON.Mesh("center",scene);
+
+    var proton = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:1}, scene);
+    var redMaterial = new BABYLON.StandardMaterial("myRedMaterial", scene);
+    redMaterial.diffuseColor = new BABYLON.Color3(1,0.1,0.1);
+    proton.material = redMaterial;
+
+    var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
+    blueMaterial.diffuseColor = new BABYLON.Color3(0.4,0.4,1);
+    var eletron = BABYLON.MeshBuilder.CreateSphere("eletron", {diameter:0.4}, scene);
+    eletron.position.z = -3;
+    eletron.material = blueMaterial;
+
+    var myPoints = [];
+
+    var deltaTheta = 0.1;
+
+    var radius = 3;
+    var theta = 0;
+    for (var i = 0; i<65; i++) {
+        myPoints.push(new BABYLON.Vector3(radius * Math.cos(theta), 0, radius * Math.sin(theta)));
+        theta += deltaTheta;
+    }
+	//Create lines 
+	var lines = BABYLON.MeshBuilder.CreateLines("lines", {points: myPoints}, scene);
+
+    center.addChild(proton);
+    center.addChild(eletron);
+    center.addChild(lines);
+
+    center.position = new BABYLON.Vector3(0,-3,10);
+    center.id = "centerX";
+
 }
+
+    function LoopEletronX(){
+
+        var centerY = scene.getMeshByID("centerX");
+        var inc = 1;    
+        centerY.rotation.y -= 0.01 * inc;
+        inc = inc * 1;
+    }
 
 
     var engine;
@@ -103,6 +137,7 @@ function CreateHelio(){
 
         engine.runRenderLoop(function () {
             if (sceneToRender && sceneToRender.activeCamera) {
+                LoopEletronX()
                 sceneToRender.render();
             }
         });
