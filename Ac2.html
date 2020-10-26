@@ -80,7 +80,7 @@ function CreateElement(proton, neutron, eletron, camada, ultima){
 
 function CreateHidrogenio(){
 
-    var center = new BABYLON.Mesh("center",scene);
+    var centerX = new BABYLON.Mesh("centerX",scene);
 
     var proton = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:1}, scene);
     var redMaterial = new BABYLON.StandardMaterial("myRedMaterial", scene);
@@ -106,12 +106,49 @@ function CreateHidrogenio(){
 	//Create lines 
 	var lines = BABYLON.MeshBuilder.CreateLines("lines", {points: myPoints}, scene);
 
-    center.addChild(proton);
-    center.addChild(eletron);
-    center.addChild(lines);
+    centerX.addChild(proton);
+    centerX.addChild(eletron);
+    centerX.addChild(lines);
 
-    center.position = new BABYLON.Vector3(0,-3,10);
-    center.id = "centerX";
+    centerX.position = new BABYLON.Vector3(0,-3,10);
+    centerX.id = "centerX";
+
+}
+
+function CreateHelio(){
+
+var center = new BABYLON.Mesh("center",scene);
+
+var proton = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:1}, scene);
+var redMaterial = new BABYLON.StandardMaterial("myRedMaterial", scene);
+redMaterial.diffuseColor = new BABYLON.Color3(1,0.1,0.1);
+proton.material = redMaterial;
+
+var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
+blueMaterial.diffuseColor = new BABYLON.Color3(0.4,0.4,1);
+var eletron = BABYLON.MeshBuilder.CreateSphere("eletron", {diameter:0.4}, scene);
+eletron.position.z = -3;
+eletron.material = blueMaterial;
+
+var myPoints = [];
+
+var deltaTheta = 0.1;
+
+var radius = 3;
+var theta = 0;
+for (var i = 0; i<65; i++) {
+    myPoints.push(new BABYLON.Vector3(radius * Math.cos(theta), 0, radius * Math.sin(theta)));
+    theta += deltaTheta;
+}
+//Create lines 
+var lines = BABYLON.MeshBuilder.CreateLines("lines", {points: myPoints}, scene);
+
+center.addChild(proton);
+center.addChild(eletron);
+center.addChild(lines);
+
+center.position = new BABYLON.Vector3(0,-3,10);
+center.id = "centerX";
 
 }
 
