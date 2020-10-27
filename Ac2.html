@@ -66,98 +66,127 @@
     light.intensity = 0.7;
 
     CreateHidrogenio();
+    CreateHelio();
 
     return scene;
 };
 
-function CreateElement(proton, neutron, eletron, camada, ultima){
+    function CreateElement(proton, neutron, eletron, camada, ultima){
 
-        for(i=0;i<proton+neutron; i++){
+            for(i=0;i<proton+neutron; i++){
 
+            }
+
+    }
+
+    function CreateHidrogenio(){
+
+        var hidrogenio = new BABYLON.Mesh("hidrogenio",scene);
+
+        var proton = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:1}, scene);
+        var redMaterial = new BABYLON.StandardMaterial("myRedMaterial", scene);
+        redMaterial.diffuseColor = new BABYLON.Color3(1,0.1,0.1);
+        proton.material = redMaterial;
+
+        var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
+        blueMaterial.diffuseColor = new BABYLON.Color3(0.4,0.4,1);
+        var eletron = BABYLON.MeshBuilder.CreateSphere("eletron", {diameter:0.4}, scene);
+        eletron.position.z = -5;
+        eletron.material = blueMaterial;
+
+        var myPoints = [];
+
+        var deltaTheta = 0.1;
+
+        var radius = 5;
+        var theta = 0;
+        for (var i = 0; i<65; i++) {
+            myPoints.push(new BABYLON.Vector3(radius * Math.cos(theta), 0, radius * Math.sin(theta)));
+            theta += deltaTheta;
         }
+        //Create lines 
+        var lines = BABYLON.MeshBuilder.CreateLines("lines", {points: myPoints}, scene);
+        var centerEletron = new BABYLON.Mesh("centerEletron",scene);
 
-}
+        hidrogenio.addChild(proton);
+        hidrogenio.addChild(centerEletron);
+        hidrogenio.addChild(lines);
 
-function CreateHidrogenio(){
+        centerEletron.addChild(eletron);
+
+        hidrogenio.position = new BABYLON.Vector3(0,-3,10);
+        centerEletron.id = "centerY";
+
+    }
+
+    function CreateHelio(){
 
     var center = new BABYLON.Mesh("center",scene);
 
-    var proton = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:1}, scene);
+    var proton1 = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:1}, scene);
+    proton1.position.y = 0.6;
+    var proton2 = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:1}, scene);
+    proton2.position.y = -0.6;
     var redMaterial = new BABYLON.StandardMaterial("myRedMaterial", scene);
     redMaterial.diffuseColor = new BABYLON.Color3(1,0.1,0.1);
-    proton.material = redMaterial;
+    proton1.material = redMaterial;
+    proton2.material = redMaterial;
+
+    var neutron1 = BABYLON.MeshBuilder.CreateSphere("neutron", {diameter:1}, scene);
+    neutron1.position.x = 0.6;
+    var neutron2 = BABYLON.MeshBuilder.CreateSphere("neutron", {diameter:1}, scene);
+    neutron2.position.x = -0.6;
+    var yellowMaterial = new BABYLON.StandardMaterial("myYellowMaterial", scene);
+        yellowMaterial.diffuseColor = new BABYLON.Color3(1,1,0);
+    neutron1.material = yellowMaterial;
+    neutron2.material = yellowMaterial;
 
     var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
     blueMaterial.diffuseColor = new BABYLON.Color3(0.4,0.4,1);
     var eletron = BABYLON.MeshBuilder.CreateSphere("eletron", {diameter:0.4}, scene);
-    eletron.position.z = -3;
+    var eletron2 = BABYLON.MeshBuilder.CreateSphere("eletron", {diameter:0.4}, scene);
+    eletron.position.z = -5;
     eletron.material = blueMaterial;
+    eletron2.position.z = 5;
+    eletron2.material = blueMaterial;
 
     var myPoints = [];
 
     var deltaTheta = 0.1;
 
-    var radius = 3;
+    var radius = 5;
     var theta = 0;
     for (var i = 0; i<65; i++) {
         myPoints.push(new BABYLON.Vector3(radius * Math.cos(theta), 0, radius * Math.sin(theta)));
         theta += deltaTheta;
     }
-	//Create lines 
-	var lines = BABYLON.MeshBuilder.CreateLines("lines", {points: myPoints}, scene);
-
-    center.addChild(proton);
-    center.addChild(eletron);
+    //Create lines 
+    var lines = BABYLON.MeshBuilder.CreateLines("lines", {points: myPoints}, scene);
+    var centerEletron = new BABYLON.Mesh("centerEletron",scene);
+    center.addChild(proton1);
+    center.addChild(proton2);
+    center.addChild(neutron1);
+    center.addChild(neutron2);
+    center.addChild(centerEletron);
     center.addChild(lines);
 
-    center.position = new BABYLON.Vector3(0,-3,10);
-    center.id = "centerX";
+    centerEletron.addChild(eletron);
+    centerEletron.addChild(eletron2);
 
-}
+    center.position = new BABYLON.Vector3(15,-3,10);
+    centerEletron.id = "centerY";
 
-function CreateHelio(){
+    }
 
-var center = new BABYLON.Mesh("center",scene);
+    function LoopEletronY(){
 
-var proton = BABYLON.MeshBuilder.CreateSphere("proton", {diameter:1}, scene);
-var redMaterial = new BABYLON.StandardMaterial("myRedMaterial", scene);
-redMaterial.diffuseColor = new BABYLON.Color3(1,0.1,0.1);
-proton.material = redMaterial;
-
-var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
-blueMaterial.diffuseColor = new BABYLON.Color3(0.4,0.4,1);
-var eletron = BABYLON.MeshBuilder.CreateSphere("eletron", {diameter:0.4}, scene);
-eletron.position.z = -3;
-eletron.material = blueMaterial;
-
-var myPoints = [];
-
-var deltaTheta = 0.1;
-
-var radius = 3;
-var theta = 0;
-for (var i = 0; i<65; i++) {
-    myPoints.push(new BABYLON.Vector3(radius * Math.cos(theta), 0, radius * Math.sin(theta)));
-    theta += deltaTheta;
-}
-//Create lines 
-var lines = BABYLON.MeshBuilder.CreateLines("lines", {points: myPoints}, scene);
-
-center.addChild(proton);
-center.addChild(eletron);
-center.addChild(lines);
-
-center.position = new BABYLON.Vector3(0,-3,10);
-center.id = "centerX";
-
-}
-
-    function LoopEletronX(){
-
-        var centerY = scene.getMeshByID("centerX");
-        var inc = 1;    
-        centerY.rotation.y -= 0.01 * inc;
-        inc = inc * 1;
+        var centerY = scene.getMeshesByID("centerY");
+        var inc = 1;
+        centerY.forEach(element => {
+            element.rotation.y -= 0.01 * inc;
+            inc = inc * 1;
+        });
+        
     }
 
 
@@ -174,7 +203,7 @@ center.id = "centerX";
 
         engine.runRenderLoop(function () {
             if (sceneToRender && sceneToRender.activeCamera) {
-                LoopEletronX()
+                LoopEletronY()
                 sceneToRender.render();
             }
         });
