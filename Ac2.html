@@ -68,6 +68,11 @@
     CreateHidrogenio();
     CreateHelio();
     CreateLitio();
+    CreateBerilio();
+    CreateBoro();
+    CreateCarbono();
+    CreateNitrogenio();
+    CreateOxigenio();
 
     return scene;
 };
@@ -79,6 +84,9 @@
    //         }
    //
    // }
+
+   //colocar uma plaquinha com o nome de cada elemento 
+
 
     function CreateHidrogenio(){
 
@@ -174,18 +182,421 @@
         var eletron = CriarEletron(0,0,5);
         centerEletronY.addChild(eletron);
 
-        var eletron = CriarEletron(0,0,-5);
+        var eletron = CriarEletron(0,0,-7);
         centerEletronX.addChild(eletron);
 
         lines = CriarLinha(5, 'x');
         center.addChild(lines);
 
-        lines = CriarLinha(5, 'y');
+        lines = CriarLinha(7, 'y');
         center.addChild(lines);
         center.position = new BABYLON.Vector3(30,-3,10);
 
     }
 
+    function CreateBerilio(){
+
+    var center = new BABYLON.Mesh("center",scene);
+
+    var proton = CriarProton(0,0,0.6);
+    center.addChild(proton);
+
+    var proton = CriarProton(0,0,-0.6);
+    center.addChild(proton);
+
+    var proton = CriarProton(0.6,0.6,-0.6);
+    center.addChild(proton);  
+
+    var proton = CriarProton(0.6,-0.6,-0.6);
+    center.addChild(proton);         
+
+    var neutron = CriarNeutron(0.6,0,0);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0.7,0,0);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.6,0,0);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,0.6,0);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,-0.6,0);
+    center.addChild(neutron);
+
+    var centerEletronY = new BABYLON.Mesh("centerEletronY",scene);
+    centerEletronY.id = "centerY";
+    center.addChild(centerEletronY);
+
+    var centerEletronX = new BABYLON.Mesh("centerEletronX",scene);
+    centerEletronX.id = "centerX";
+    center.addChild(centerEletronX);
+
+    var eletron = CriarEletron(0,0,-5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,-7);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,7);
+    centerEletronX.addChild(eletron);
+
+    lines = CriarLinha(5, 'x');
+    center.addChild(lines);
+
+    lines = CriarLinha(7, 'y');
+    center.addChild(lines);
+
+    center.position = new BABYLON.Vector3(45,-3,10);
+
+}
+
+    function CreateBoro(){
+
+    var center = new BABYLON.Mesh("center",scene);
+
+    //CRIAÇÃO DOS PROTONS
+    var proton = CriarProton(0,0,0.7);
+    center.addChild(proton);
+
+    var proton = CriarProton(0,0,-0.7);
+    center.addChild(proton);
+
+    var proton = CriarProton(0,0.7,0);
+    center.addChild(proton);  
+
+    var proton = CriarProton(0,-0.7,0);
+    center.addChild(proton); 
+
+    var proton = CriarProton(0.8,0,0);
+    center.addChild(proton);
+
+
+    //CRIAÇÃO DOS NEUTRONS
+    var neutron = CriarNeutron(0,0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,0.7,-0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,-0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,-0.7,-0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,0,0);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,0.7,0.7);
+    center.addChild(neutron);
+
+
+    var centerEletronY = new BABYLON.Mesh("centerEletronY",scene);
+    centerEletronY.id = "centerY";
+    center.addChild(centerEletronY);
+
+    var centerEletronX = new BABYLON.Mesh("centerEletronX",scene);
+    centerEletronX.id = "centerX";
+    center.addChild(centerEletronX);
+
+    //CRIAÇÃO DOS ELETRONS
+    var eletron = CriarEletron(0,0,-5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,-7);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,7);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,7,0);
+    centerEletronX.addChild(eletron);
+
+    lines = CriarLinha(5, 'x');
+    center.addChild(lines);
+
+    lines = CriarLinha(7, 'y');
+    center.addChild(lines);
+
+    center.position = new BABYLON.Vector3(60,-3,10);
+
+}
+
+    function CreateCarbono(){
+
+    var center = new BABYLON.Mesh("center",scene);
+
+    //CRIAÇÃO DOS PROTONS
+    var proton = CriarProton(0,0,0.7);
+    center.addChild(proton);
+
+    var proton = CriarProton(0,0,-0.7);
+    center.addChild(proton);
+
+    var proton = CriarProton(0,0.7,0);
+    center.addChild(proton);  
+
+    var proton = CriarProton(0,-0.7,0);
+    center.addChild(proton); 
+
+    var proton = CriarProton(0.8,0,0);
+    center.addChild(proton);
+
+    var proton = CriarProton(-0.8,-0.8,0);
+    center.addChild(proton);
+
+
+    //CRIAÇÃO DOS NEUTRONS
+    var neutron = CriarNeutron(0,0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,0.7,-0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,-0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,-0.7,-0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,0,0);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,0.7,0.7);
+    center.addChild(neutron);
+
+
+    var centerEletronY = new BABYLON.Mesh("centerEletronY",scene);
+    centerEletronY.id = "centerY";
+    center.addChild(centerEletronY);
+
+    var centerEletronX = new BABYLON.Mesh("centerEletronX",scene);
+    centerEletronX.id = "centerX";
+    center.addChild(centerEletronX);
+
+    //CRIAÇÃO DOS ELETRONS
+    var eletron = CriarEletron(0,0,-5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,-7);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,7);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,7,0);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,-7,0);
+    centerEletronX.addChild(eletron);
+
+    lines = CriarLinha(5, 'x');
+    center.addChild(lines);
+
+    lines = CriarLinha(7, 'y');
+    center.addChild(lines);
+
+    center.position = new BABYLON.Vector3(75,-3,10);
+
+}
+   
+    function CreateNitrogenio(){
+
+    var center = new BABYLON.Mesh("center",scene);
+
+    //CRIAÇÃO DOS PROTONS
+    var proton = CriarProton(0,0,0.7);
+    center.addChild(proton);
+
+    var proton = CriarProton(0,0,-0.7);
+    center.addChild(proton);
+
+    var proton = CriarProton(0,0.7,0);
+    center.addChild(proton);  
+
+    var proton = CriarProton(0,-0.7,0);
+    center.addChild(proton); 
+
+    var proton = CriarProton(0.8,0,0);
+    center.addChild(proton);
+
+    var proton = CriarProton(-0.8,-0.8,0);
+    center.addChild(proton);
+
+    var proton = CriarProton(-0.8,-0.8,-0.8);
+    center.addChild(proton);
+
+    //CRIAÇÃO DOS NEUTRONS
+    var neutron = CriarNeutron(0,0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,0.7,-0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,-0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,-0.7,-0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,0,0);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,-0.7,0.7);
+    center.addChild(neutron);
+
+
+    var centerEletronY = new BABYLON.Mesh("centerEletronY",scene);
+    centerEletronY.id = "centerY";
+    center.addChild(centerEletronY);
+
+    var centerEletronX = new BABYLON.Mesh("centerEletronX",scene);
+    centerEletronX.id = "centerX";
+    center.addChild(centerEletronX);
+
+    //CRIAÇÃO DOS ELETRONS
+    var eletron = CriarEletron(0,0,-5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,-7);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,7);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,7,0);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,-7,0);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,3.5* Math.sqrt(2),3.5* Math.sqrt(2));
+    centerEletronX.addChild(eletron);
+
+    lines = CriarLinha(5, 'x');
+    center.addChild(lines);
+
+    lines = CriarLinha(7, 'y');
+    center.addChild(lines);
+
+    center.position = new BABYLON.Vector3(90,-3,10);
+
+    }
+   
+    function CreateOxigenio(){
+
+    var center = new BABYLON.Mesh("center",scene);
+
+    //CRIAÇÃO DOS PROTONS
+    var proton = CriarProton(0,0,0.7);
+    center.addChild(proton);
+
+    var proton = CriarProton(0,0,-0.7);
+    center.addChild(proton);
+
+    var proton = CriarProton(0,0.7,0);
+    center.addChild(proton);  
+
+    var proton = CriarProton(0,-0.7,0);
+    center.addChild(proton); 
+
+    var proton = CriarProton(0.8,0,0);
+    center.addChild(proton);
+
+    var proton = CriarProton(-0.8,-0.8,0);
+    center.addChild(proton);
+
+    var proton = CriarProton(-0.8,-0.8,-0.8);
+    center.addChild(proton);
+
+    var proton = CriarProton(0.9,0.8,0.8);
+    center.addChild(proton);
+
+    //CRIAÇÃO DOS NEUTRONS
+    var neutron = CriarNeutron(0,0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,0.7,-0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,-0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(0,-0.7,-0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,0,0);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,-0.7,0.7);
+    center.addChild(neutron);
+
+    var neutron = CriarNeutron(-0.7,-0.9,0);
+    center.addChild(neutron);
+
+
+    var centerEletronY = new BABYLON.Mesh("centerEletronY",scene);
+    centerEletronY.id = "centerY";
+    center.addChild(centerEletronY);
+
+    var centerEletronX = new BABYLON.Mesh("centerEletronX",scene);
+    centerEletronX.id = "centerX";
+    center.addChild(centerEletronX);
+
+    //CRIAÇÃO DOS ELETRONS
+    var eletron = CriarEletron(0,0,-5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,5);
+    centerEletronY.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,-7);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,0,7);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,7,0);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,-7,0);
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,3.5* Math.sqrt(2),3.5* Math.sqrt(2));
+    centerEletronX.addChild(eletron);
+
+    var eletron = CriarEletron(0,-3.5* Math.sqrt(2),-3.5* Math.sqrt(2));
+    centerEletronX.addChild(eletron);
+
+    lines = CriarLinha(5, 'x');
+    center.addChild(lines);
+
+    lines = CriarLinha(7, 'y');
+    center.addChild(lines);
+
+    center.position = new BABYLON.Vector3(105,-3,10);
+
+    }
     function CriarProton(x, y, z){
 
         var redMaterial = new BABYLON.StandardMaterial("myRedMaterial", scene);
