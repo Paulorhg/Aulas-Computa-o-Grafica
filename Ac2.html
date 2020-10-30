@@ -675,7 +675,7 @@
         label.cornerRadius = 20;
         label.thickness = 1;
         label.linkOffsetY = 60;
-        label.linkOffsetX = 90;
+        label.linkOffsetX = 80;
         advancedTexture.addControl(label);
         label.linkWithMesh(mesh);
 
@@ -685,23 +685,64 @@
         text1.fontSize = 50;
         label.addControl(text1);
 
-        var label2 = new BABYLON.GUI.Rectangle("textos");
-        label2.background = "green";
+        var label2 = new BABYLON.GUI.Rectangle("text label for " + mesh.name);
         label2.height = "100px";
         label2.alpha = 0.5;
         label2.width = "150px";
-        label2.cornerRadius = 20;
-        label2.thickness = 1;
-        label2.linkOffsetX = 100;
+        label2.thickness = 0;
+        label2.linkOffsetY = 60;
+        label2.linkOffsetX = 200;
         advancedTexture.addControl(label2);
+        label2.linkWithMesh(mesh);
         var text2 = new BABYLON.GUI.TextBlock();
         text2.text = "Numero de Proton: " + txtProton;
         text2.color = "white";
         text2.fontSize = 12;
         text2.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
         text2.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-        //text2.paddingTop = "10px";
+        text2.paddingTop = "10px";
+        text2.paddingLeft = "5px";
         label2.addControl(text2);
+
+        var text3 = new BABYLON.GUI.TextBlock();
+        text3.text = "Numero de Neutrons: " + txtNeutron;
+        text3.color = "white";
+        text3.fontSize = 12;
+        text3.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+        text3.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+        text3.paddingTop = "25px";
+        text3.paddingLeft = "5px";
+        label2.addControl(text3);
+
+        var text4 = new BABYLON.GUI.TextBlock();
+        text4.text = "Numero de Eletrons: " + txtEletron;
+        text4.color = "white";
+        text4.fontSize = 12;
+        text4.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+        text4.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+        text4.paddingTop = "40px";
+        text4.paddingLeft = "5px";
+        label2.addControl(text4);
+
+        var text5 = new BABYLON.GUI.TextBlock();
+        text5.text = "Eletrons na Valencia: " + txtValencia;
+        text5.color = "white";
+        text5.fontSize = 12;
+        text5.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+        text5.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+        text5.paddingTop = "55px";
+        text5.paddingLeft = "5px";
+        label2.addControl(text5);
+
+        var text6 = new BABYLON.GUI.TextBlock();
+        text6.text = "Numero de camadas: " + txtCamadas;
+        text6.color = "white";
+        text6.fontSize = 12;
+        text6.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+        text6.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+        text6.paddingTop = "70px";
+        text6.paddingLeft = "5px";
+        label2.addControl(text6);
     }  
 
     function LoopEletron(){
