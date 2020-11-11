@@ -72,11 +72,27 @@
     // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.7;
 
+    var hidrogenio = CreateHidrogenio();
+    var helio = CreateHelio();
+    var litio = CreateLitio();
+    var berilio = CreateBerilio();
+    var boro = CreateBoro();
+    var carbono = CreateCarbono();
+    var nitrogenio = CreateNitrogenio();
+    var oxigenio = CreateOxigenio();
+
+    helio.setEnabled(false);
+    litio.setEnabled(false);
+    berilio.setEnabled(false);
+    boro.setEnabled(false);
+    carbono.setEnabled(false);
+    nitrogenio.setEnabled(false);
+    oxigenio.setEnabled(false);
 
     //comecei a fazer o esboço, nao sei como tem que ficar a camera pra girar em cima do atomo!!!!!!!!!!!!!!
     //MOVIMENTAÇÃO COM OS NÚMEROS
     scene.actionManager = new BABYLON.ActionManager(scene);
-
+/*
     scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(
         BABYLON.ActionManager.OnKeydownTrigger, function(evt) {
             var key = evt.sourceEvent.key;
@@ -93,17 +109,7 @@
             }
         }
     ));
-
-
-    CreateHidrogenio();
-    CreateHelio();
-    CreateLitio();
-    CreateBerilio();
-    CreateBoro();
-    CreateCarbono();
-    CreateNitrogenio();
-    CreateOxigenio();
-
+*/
     return scene;
 };
  
@@ -111,9 +117,6 @@
 
 
     function CreateHidrogenio(){
-
-        
-        
 
         var hidrogenio = new BABYLON.Mesh("hidrogenio",scene);
 
@@ -130,10 +133,14 @@
         var lines = CriarLinha(5,'x');
         hidrogenio.addChild(lines);
 
-        hidrogenio.position = new BABYLON.Vector3(0,-3,10);
-
+        hidrogenio.position = new BABYLON.Vector3(0,-4,0);
         
         var label = createLabel(hidrogenio, 'H', '1', '0', '1', '1','1');
+
+        hidrogenio.addChild(label);
+
+
+        return hidrogenio;
         
     }
 
@@ -170,6 +177,8 @@
         centerEletron.id = "centerY";
 
         var label = createLabel(helio, 'He', '2', '2', '2', '2','1');
+
+        return helio;
 
     }
 
@@ -223,6 +232,8 @@
         litio.position = new BABYLON.Vector3(30,-3,10);
 
         var label = createLabel(litio, 'Li', '3', '4', '3', '1','2');
+
+        return litio;
 
     }
 
@@ -287,6 +298,7 @@
 
     var label = createLabel(berilio, 'Be', '4', '5', '4', '2','2');
 
+    return berilio;
 }
 
     function CreateBoro(){
@@ -363,6 +375,8 @@
     boro.position = new BABYLON.Vector3(60,-3,10);
 
     var label = createLabel(boro, 'B', '5', '6', '5', '3','2');
+
+    return boro;
 
 }
 
@@ -446,6 +460,8 @@
     carbono.position = new BABYLON.Vector3(75,-3,10);
 
     var label = createLabel(carbono, 'C', '6', '6', '6', '4','2');
+
+    return carbono;
 
 }
    
@@ -537,6 +553,8 @@
     nitrogenio.position = new BABYLON.Vector3(90,-3,10);
 
     var label = createLabel(nitrogenio, 'N', '7', '7', '7', '5','2');
+
+    return nitrogenio;
 
     }
    
@@ -638,6 +656,8 @@
 
     var label = createLabel(oxigenio, 'O', '8', '8', '8', '6','2');
 
+    return oxigenio;
+
     }
     function CriarProton(x, y, z){
 
@@ -699,7 +719,14 @@
 
     function createLabel(mesh, txtBox, txtProton, txtNeutron, txtEletron, txtValencia, txtCamadas) {
 
-        var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+        
+        var plane = BABYLON.Mesh.CreatePlane("plane", 60);
+        plane.parent = mesh;
+        plane.position.y = -30;
+        plane.position.x = -10;
+        plane.position.z = 35;
+        plane.rotation.y = -1.5708;
+        var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
 
         var label = new BABYLON.GUI.Rectangle("label for " + mesh.name);
         label.background = "green";
@@ -708,8 +735,6 @@
         label.width = "90px";
         label.cornerRadius = 20;
         label.thickness = 1;
-        label.linkOffsetY = 60;
-        label.linkOffsetX = 80;
         advancedTexture.addControl(label);
         label.linkWithMesh(mesh);
 
@@ -728,7 +753,7 @@
         var label2 = new BABYLON.GUI.Rectangle("text label for " + mesh.name);
         label2.height = "100px";
         label2.alpha = 0.5;
-        label2.width = "150px";
+        label2.width = "250px";
         label2.thickness = 0;
         label2.linkOffsetY = 60;
         label2.linkOffsetX = 200;
@@ -741,7 +766,7 @@
         text2.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
         text2.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
         text2.paddingTop = "10px";
-        text2.paddingLeft = "5px";
+        text2.paddingLeft = "100px";
         label2.addControl(text2);
 
         var text3 = new BABYLON.GUI.TextBlock();
@@ -751,7 +776,7 @@
         text3.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
         text3.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
         text3.paddingTop = "25px";
-        text3.paddingLeft = "5px";
+        text3.paddingLeft = "100px";
         label2.addControl(text3);
 
         var text4 = new BABYLON.GUI.TextBlock();
@@ -761,7 +786,7 @@
         text4.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
         text4.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
         text4.paddingTop = "40px";
-        text4.paddingLeft = "5px";
+        text4.paddingLeft = "100px";
         label2.addControl(text4);
 
         var text5 = new BABYLON.GUI.TextBlock();
@@ -771,7 +796,7 @@
         text5.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
         text5.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
         text5.paddingTop = "55px";
-        text5.paddingLeft = "5px";
+        text5.paddingLeft = "100px";
         label2.addControl(text5);
 
         var text6 = new BABYLON.GUI.TextBlock();
@@ -781,8 +806,10 @@
         text6.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
         text6.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
         text6.paddingTop = "70px";
-        text6.paddingLeft = "5px";
+        text6.paddingLeft = "100px";
         label2.addControl(text6);
+
+        return plane;
     }  
 
     function LoopEletron(){
