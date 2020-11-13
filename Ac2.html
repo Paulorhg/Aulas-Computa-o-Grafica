@@ -881,9 +881,9 @@
             btnAumentar.paddingBottom = 30;
 
             btnAumentar.onPointerUpObservable.add(function () {
-                molecula.scaling.x += 1
-                molecula.scaling.y += 1
-                molecula.scaling.z += 1
+                molecula.scaling.x += 0.3
+                molecula.scaling.y += 0.3
+                molecula.scaling.z += 0.3
             });
             advancedTexture.addControl(btnAumentar);
 
@@ -899,10 +899,10 @@
             btnDiminuir.paddingBottom = 30;
 
             btnDiminuir.onPointerUpObservable.add(function () {
-                if (molecula.scaling.x - 1 >= 1) {
-                    molecula.scaling.x -= 1
-                    molecula.scaling.y -= 1
-                    molecula.scaling.z -= 1
+                if (molecula.scaling.x - 0.3 >= 0.3) {
+                    molecula.scaling.x -= 0.3
+                    molecula.scaling.y -= 0.3
+                    molecula.scaling.z -= 0.3
                 }
 
             });
