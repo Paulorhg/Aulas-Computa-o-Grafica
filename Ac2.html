@@ -171,10 +171,8 @@
 
             hidrogenio.addChild(label);
 
-            var botoes = CriarBotoes(hidrogenio);
-
-            hidrogenio.addChild(botoes)
-            console.log(botoes)
+            CriarBotoes(hidrogenio);
+            
             return hidrogenio;
 
         }
@@ -270,6 +268,8 @@
 
             var label = createLabel(litio, 'Li', '3', '4', '3', '1', '2');
 
+            CriarBotoes(litio);
+
             return litio;
 
         }
@@ -334,6 +334,8 @@
             berilio.position = new BABYLON.Vector3(0, -4, 0);
 
             var label = createLabel(berilio, 'Be', '4', '5', '4', '2', '2');
+
+            CriarBotoes(berilio);
 
             return berilio;
         }
@@ -412,6 +414,8 @@
             boro.position = new BABYLON.Vector3(0, -4, 0);
 
             var label = createLabel(boro, 'B', '5', '6', '5', '3', '2');
+
+            CriarBotoes(boro);
 
             return boro;
 
@@ -497,6 +501,8 @@
             carbono.position = new BABYLON.Vector3(0, -4, 0);
 
             var label = createLabel(carbono, 'C', '6', '6', '6', '4', '2');
+
+            CriarBotoes(carbono);
 
             return carbono;
 
@@ -590,6 +596,8 @@
             nitrogenio.position = new BABYLON.Vector3(0, -4, 0);
 
             var label = createLabel(nitrogenio, 'N', '7', '7', '7', '5', '2');
+
+            CriarBotoes(nitrogenio);
 
             return nitrogenio;
 
@@ -692,6 +700,8 @@
             oxigenio.position = new BABYLON.Vector3(0, -4, 0);
 
             var label = createLabel(oxigenio, 'O', '8', '8', '8', '6', '2');
+
+            CriarBotoes(oxigenio);
 
             return oxigenio;
 
@@ -894,13 +904,6 @@
             });
             advancedTexture.addControl(btnDiminuir);
 
-            var botoes = new BABYLON.Mesh("botoes")
-
-            btnDiminuir.parent = botoes;
-            // botoes.addChild(btnAumentar);
-            // botoes.addChild(btnDiminuir);
-
-            return botoes
         }
 
         function LoopEletron() {
