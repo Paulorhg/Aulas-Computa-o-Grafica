@@ -102,11 +102,6 @@
 
             //MOVIMENTAÇÃO COM OS NÚMEROS
             scene.actionManager = new BABYLON.ActionManager(scene);
-            // scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction({
-            // trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-            // parameter: "2"
-            // }, alterarMolecula));
-
             scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(
                 BABYLON.ActionManager.OnKeyDownTrigger, function (evt) {
                     var key = evt.sourceEvent.key;
@@ -124,30 +119,7 @@
 2
                 }
             ));
-            
-            //             case '5' : 
-            //                 ativo.setEnabled(false);
-            //                 boro.setEnabled(true);
-            //                 ativo = boro;
-            //                 break;
-            //             case '6' : 
-            //                 ativo.setEnabled(false);
-            //                 carbono.setEnabled(true);
-            //                 ativo = carbono;
-            //                 break;
-            //             case '7' : 
-            //                 ativo.setEnabled(false);
-            //                 nitrogenio.setEnabled(true);
-            //                 ativo = nitrogenio;
-            //                 break;
-            //             case '8' : 
-            //                 ativo.setEnabled(false);
-            //                 oxigenio.setEnabled(true);
-            //                 ativo = oxigenio;
-            //                 break;
-            //         }
-            //     }
-            // ));
+           
             return scene;
         };
 
