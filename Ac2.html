@@ -682,6 +682,7 @@
             return oxigenio;
 
         }
+       
         function CriarProton(x, y, z) {
 
             var redMaterial = new BABYLON.StandardMaterial("myRedMaterial", scene);
@@ -689,7 +690,15 @@
 
             var proton = BABYLON.MeshBuilder.CreateSphere("proton", { diameter: 1 }, scene);
             proton.position = new BABYLON.Vector3(x, y, z);
-            proton.material = redMaterial;
+           //proton.material = redMaterial;
+
+            var mat = new BABYLON.StandardMaterial("palmeiras", scene);
+            mat.diffuseTexture = new BABYLON.Texture("data:image/jpeg;base64,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", scene);
+            //mat.diffuseTexture.hasAlpha = true;
+            mat.backFaceCulling = false;
+
+
+            proton.material = mat;
 
             return proton;
         }
@@ -700,18 +709,43 @@
 
             var neutron = BABYLON.MeshBuilder.CreateSphere("neutron", { diameter: 1 }, scene);
             neutron.position = new BABYLON.Vector3(x, y, z);
-            neutron.material = yellowMaterial;
+            //neutron.material = yellowMaterial;
+            var mat = new BABYLON.StandardMaterial("palmeiras", scene);
+            mat.diffuseTexture = new BABYLON.Texture("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ01p8v04Ebsd_kvGJeWnrDoSlIOcwoIQ80CQ&usqp=CAU",scene);
+            //mat.diffuseTexture.hasAlpha = true;
+            mat.backFaceCulling = false;
 
+
+            neutron.material = mat;
+
+            
             return neutron;
         }
 
         function CriarEletron(x, y, z) {
+            /*
             var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
             blueMaterial.diffuseColor = new BABYLON.Color3(0.4, 0.4, 1);
+            */
 
             var eletron = BABYLON.MeshBuilder.CreateSphere("eletron", { diameter: 0.4 }, scene);
             eletron.position = new BABYLON.Vector3(x, y, z);
-            eletron.material = blueMaterial;
+            //eletron.material = blueMaterial;
+
+            var mat = new BABYLON.StandardMaterial("palmeiras", scene);
+            mat.diffuseTexture = new BABYLON.Texture("https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/1024px-Palmeiras_logo.svg.png", scene);
+            mat.backFaceCulling = false;
+            eletron.material = mat;
+
+            //TESTE DOS RAIOS DE LUZ 
+            var light1 = new BABYLON.PointLight("Omni", new BABYLON.Vector3(0, 0, 0), scene);
+	        light1.diffuse = new BABYLON.Color3(1, 1, 1);
+        	light1.intensity = 1;
+            
+            //var godrays = new BABYLON.VolumetricLightScatteringPostProcess ( 'godrays' , 1.0 , camera , mesh , 100 , BABYLON.Texture.BILINEAR_SAMPLINGMODE , engine , false ) ;
+
+            //light1.position = godrays.mesh.position;
+
 
             return eletron;
         }
@@ -740,6 +774,7 @@
             return BABYLON.MeshBuilder.CreateLines("lines", { points: myPoints }, scene);
         }
 
+        //QUADRO COM AS INFORMAÇÕES
         function createLabel(mesh, txtBox, txtProton, txtNeutron, txtEletron, txtValencia, txtCamadas) {
 
 
@@ -838,10 +873,11 @@
         function CriarBotoes(molecula) {
 
 
-            var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("canvas", scene);
+            var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI");
 
 
             var btnAumentar = BABYLON.GUI.Button.CreateSimpleButton("btnAumentar", "Aumentar");
+            /*
             btnAumentar.width = 1;
             btnAumentar.height = 1;
             btnAumentar.color = "white";
@@ -851,15 +887,25 @@
             btnAumentar.paddingRight = 50;
             btnAumentar.paddingLeft = 800;
             btnAumentar.paddingBottom = 30;
+            */
+            btnAumentar.width = 0.1
+            btnAumentar.top = 400;
+            btnAumentar.left = -300;
+            btnAumentar.height = "40px"
+            btnAumentar.color = "white"
+            btnAumentar.background = "gray"
+            
+            advancedTexture.addControl(btnAumentar);
 
             btnAumentar.onPointerUpObservable.add(function () {
                 molecula.scaling.x += 0.3
                 molecula.scaling.y += 0.3
                 molecula.scaling.z += 0.3
             });
-            advancedTexture.addControl(btnAumentar);
-
+            
+            
             var btnDiminuir = BABYLON.GUI.Button.CreateSimpleButton("btnDiminuir", "Diminuir");
+            /*
             btnDiminuir.width = 1;
             btnDiminuir.height = 1;
             btnDiminuir.color = "white";
@@ -869,6 +915,16 @@
             btnDiminuir.paddingRight = 800;
             btnDiminuir.paddingLeft = 50;
             btnDiminuir.paddingBottom = 30;
+            */
+
+            btnDiminuir.width = 0.1
+            btnDiminuir.top = 400;
+            btnDiminuir.left = 300;
+            btnDiminuir.height = "40px"
+            btnDiminuir.color = "white"
+            btnDiminuir.background = "gray"
+
+            advancedTexture.addControl(btnDiminuir);
 
             btnDiminuir.onPointerUpObservable.add(function () {
                 if (molecula.scaling.x - 0.3 >= 0.3) {
@@ -878,7 +934,8 @@
                 }
 
             });
-            advancedTexture.addControl(btnDiminuir);
+            
+            
 
         }
 
