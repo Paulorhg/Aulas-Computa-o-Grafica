@@ -6,6 +6,7 @@
 
     <title>Moleculas</title>
 
+    <!--PAULO HORTA 180173 - PEDRO VITRO 180122-->
     <!-- Babylon.js -->
     <script src="https://code.jquery.com/pep/0.4.2/pep.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
@@ -61,7 +62,6 @@
             camera.attachControl(canvas, true);
             //desativar o scroll do mouse
             camera.wheelPrecision = 100000000;
-            //comecei a fazer o esboço, nao sei como tem que ficar a camera pra girar em cima do atomo!!!!!!!!!!!!!!
 
             // This targets the camera to scene origin
             //camera.setTarget(BABYLON.Vector3.Zero());
@@ -139,6 +139,8 @@
             centerEletron.addChild(eletron);
 
             var lines = CriarLinha(5, 'x');
+            lines.rotation.y = 2;
+            lines.id = "centerY";
             hidrogenio.addChild(lines);
 
             hidrogenio.position = new BABYLON.Vector3(0, -4, 0);
@@ -174,13 +176,23 @@
             var eletron = CriarEletron(0, 0, -5);
             centerEletron.addChild(eletron);
 
+            var lines = CriarLinha(5, 'x');
+            lines.rotation.y = 2;
+            lines.id = "centerY";
+            helio.addChild(lines);
+
+
             var eletron = CriarEletron(0, 0, 5);
             centerEletron.addChild(eletron);
 
-            var lines = CriarLinha(5, 'x');
+            var lines = CriarLinha(5, 'x'); 
+            lines.rotation.y = 5.06;
+            lines.id = "centerY";
+            helio.addChild(lines);
+
+            
 
             helio.addChild(centerEletron);
-            helio.addChild(lines);
 
             helio.position = new BABYLON.Vector3(0, -4, 0);
             centerEletron.id = "centerY";
@@ -229,17 +241,28 @@
             var eletron = CriarEletron(0, 0, -5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 2;
+            lines.id = "centerY";
+            litio.addChild(lines);
+
             var eletron = CriarEletron(0, 0, 5);
             centerEletronY.addChild(eletron);
+
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 5.06;
+            lines.id = "centerY";
+            litio.addChild(lines);
+
 
             var eletron = CriarEletron(0, 0, -7);
             centerEletronX.addChild(eletron);
 
-            lines = CriarLinha(5, 'x');
-            litio.addChild(lines);
-
             lines = CriarLinha(7, 'y');
-            litio.addChild(lines);
+            lines.rotation.x = -2;
+            eletron.addChild(lines);
+
+            
             litio.position = new BABYLON.Vector3(0, -4, 0);
 
             var label = createLabel(litio, 'Li', '3', '4', '3', '1', '2');
@@ -292,20 +315,34 @@
             var eletron = CriarEletron(0, 0, -5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 2;
+            lines.id = "centerY";
+            berilio.addChild(lines);
+
             var eletron = CriarEletron(0, 0, 5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 5.06;
+            lines.id = "centerY";
+            berilio.addChild(lines);
+
             var eletron = CriarEletron(0, 0, -7);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -2;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 0, 7);
             centerEletronX.addChild(eletron);
-
-            lines = CriarLinha(5, 'x');
-            berilio.addChild(lines);
-
             lines = CriarLinha(7, 'y');
-            berilio.addChild(lines);
+            lines.rotation.x = -5;
+            eletron.addChild(lines);
+
+            
+
+
 
             berilio.position = new BABYLON.Vector3(0, -4, 0);
 
@@ -369,23 +406,38 @@
             var eletron = CriarEletron(0, 0, -5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 2;
+            lines.id = "centerY";
+            boro.addChild(lines);
+
             var eletron = CriarEletron(0, 0, 5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 5.06;
+            lines.id = "centerY";
+            boro.addChild(lines);
+
             var eletron = CriarEletron(0, 0, -7);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -2;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 0, 7);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -5;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 7, 0);
             centerEletronX.addChild(eletron);
-
-            lines = CriarLinha(5, 'x');
-            boro.addChild(lines);
-
             lines = CriarLinha(7, 'y');
-            boro.addChild(lines);
+            lines.rotation.x = -0.5;
+            eletron.addChild(lines);
+
+            
 
             boro.position = new BABYLON.Vector3(0, -4, 0);
 
@@ -453,26 +505,44 @@
             var eletron = CriarEletron(0, 0, -5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 2;
+            lines.id = "centerY";
+            carbono.addChild(lines);
+
             var eletron = CriarEletron(0, 0, 5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 5.06;
+            lines.id = "centerY";
+            carbono.addChild(lines);
+
             var eletron = CriarEletron(0, 0, -7);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -2;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 0, 7);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -5;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 7, 0);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -0.5;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, -7, 0);
             centerEletronX.addChild(eletron);
-
-            lines = CriarLinha(5, 'x');
-            carbono.addChild(lines);
-
             lines = CriarLinha(7, 'y');
-            carbono.addChild(lines);
+            lines.rotation.x = -3.5;
+            eletron.addChild(lines);
+
+           
 
             carbono.position = new BABYLON.Vector3(0, -4, 0);
 
@@ -545,29 +615,49 @@
             var eletron = CriarEletron(0, 0, -5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 2;
+            lines.id = "centerY";
+            nitrogenio.addChild(lines);
+
             var eletron = CriarEletron(0, 0, 5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 5.06;
+            lines.id = "centerY";
+            nitrogenio.addChild(lines);
+
             var eletron = CriarEletron(0, 0, -7);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -2;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 0, 7);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -5;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 7, 0);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -0.5;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, -7, 0);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -3.5;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 3.5 * Math.sqrt(2), 3.5 * Math.sqrt(2));
             centerEletronX.addChild(eletron);
-
-            lines = CriarLinha(5, 'x');
-            nitrogenio.addChild(lines);
-
             lines = CriarLinha(7, 'y');
-            nitrogenio.addChild(lines);
+            lines.rotation.x = 0;
+            eletron.addChild(lines);
+
 
             nitrogenio.position = new BABYLON.Vector3(0, -4, 0);
 
@@ -646,32 +736,56 @@
             var eletron = CriarEletron(0, 0, -5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 2;
+            lines.id = "centerY";
+            oxigenio.addChild(lines);
+
             var eletron = CriarEletron(0, 0, 5);
             centerEletronY.addChild(eletron);
 
+            lines = CriarLinha(5, 'x');
+            lines.rotation.y = 5.06;
+            lines.id = "centerY";
+            oxigenio.addChild(lines);
+
             var eletron = CriarEletron(0, 0, -7);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -2;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 0, 7);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -5;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 7, 0);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -0.5;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, -7, 0);
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = -3.5;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, 3.5 * Math.sqrt(2), 3.5 * Math.sqrt(2));
             centerEletronX.addChild(eletron);
+            lines = CriarLinha(7, 'y');
+            lines.rotation.x = 0;
+            eletron.addChild(lines);
 
             var eletron = CriarEletron(0, -3.5 * Math.sqrt(2), -3.5 * Math.sqrt(2));
             centerEletronX.addChild(eletron);
-
-            lines = CriarLinha(5, 'x');
-            oxigenio.addChild(lines);
-
             lines = CriarLinha(7, 'y');
-            oxigenio.addChild(lines);
+            lines.rotation.x = 3;
+            eletron.addChild(lines);
+
+
 
             oxigenio.position = new BABYLON.Vector3(0, -4, 0);
 
@@ -752,19 +866,18 @@
 
         function CriarLinha(valRadius, posicao) {
             var myPoints = [];
-
             var deltaTheta = 0.1;
 
             var radius = valRadius;
             var theta = 0;
             if (posicao == 'x') {
-                for (var i = 0; i < 65; i++) {
+                for (var i = 0; i < 10; i++) {
                     myPoints.push(new BABYLON.Vector3(radius * Math.cos(theta), 0, radius * Math.sin(theta)));
                     theta += deltaTheta;
                 }
             }
             else {
-                for (var i = 0; i < 65; i++) {
+                for (var i = 0; i < 10; i++) {
                     myPoints.push(new BABYLON.Vector3(0, radius * Math.cos(theta), radius * Math.sin(theta)));
                     theta += deltaTheta;
                 }
@@ -772,6 +885,7 @@
 
             //Create lines 
             return BABYLON.MeshBuilder.CreateLines("lines", { points: myPoints }, scene);
+         
         }
 
         //QUADRO COM AS INFORMAÇÕES
@@ -951,7 +1065,7 @@
             var centerX = scene.getMeshesByID("centerX");
             var inc = 1;
             centerX.forEach(element => {
-                element.rotation.x -= 0.01 * inc;
+                element.rotation.x += 0.01 * inc;
                 inc = inc * 1;
             });
 
