@@ -65,8 +65,12 @@
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
        // var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-        //var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
+        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 40, 60), scene);
         //var light3 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(4, 2, 0), scene);
+
+        light2.diffuse = new BABYLON.Color3(1, 0.9, 0);
+        light2.specular = new BABYLON.Color3(1,0.77,0); 
+        light2.intensity = 0.9;
 
         // Default intensity is 1. Let's dim the light a small amount
         //light.intensity = 0.7;
@@ -184,6 +188,7 @@
     };
 
 
+/*
     function hora1()
     {
         var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
@@ -192,6 +197,11 @@
         //pouca quantidade de passaros
 
         //criar uma esfera amarela simulando o sol???
+
+        light2.diffuse = new BABYLON.Color3(1, 0.9, 0);
+        light2.specular = new BABYLON.Color3(1,0.77,0); 
+        light2.intensity = 0.9;
+        
         return 0;
 
     }
@@ -272,7 +282,7 @@
     label2.addControl(text2);
 
 }
-    
+    */
     function createWater(){
         var center1 = new BABYLON.Mesh("center1",scene);
         center1.position = new BABYLON.Vector3(3,2,0)
