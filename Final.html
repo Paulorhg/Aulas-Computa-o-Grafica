@@ -64,37 +64,55 @@
         camera.attachControl(canvas, true);
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-        var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
-        var light3 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(4, 2, 0), scene);
+       // var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+        //var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
+        //var light3 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(4, 2, 0), scene);
 
         // Default intensity is 1. Let's dim the light a small amount
-        light.intensity = 0.7;
+        //light.intensity = 0.7;
+
+        //TEXTURAS
 
         var yellowMaterial = new BABYLON.StandardMaterial("myYellowMaterial", scene);
         yellowMaterial.diffuseColor = new BABYLON.Color3(1,1,0);
 
         var greyMaterial = new BABYLON.StandardMaterial("myGreyMaterial", scene);
         greyMaterial.diffuseColor = new BABYLON.Color3(0.4,0.4,0.4);
+
+        var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
+        blueMaterial.diffuseColor = new BABYLON.Color3(0,0,0.8);
+
+        var greenMaterial = new BABYLON.StandardMaterial("myGreenMaterial", scene);
+        greenMaterial.diffuseColor = new BABYLON.Color3(0,0.5,0.2);
+
+        var cimento = new BABYLON.StandardMaterial("cimento", scene);
+        cimento.diffuseTexture = new BABYLON.Texture("texture/cimento.jpg", scene);
+
+        var agua = new BABYLON.StandardMaterial("agua", scene);
+        agua.diffuseTexture = new BABYLON.Texture("texture/agua.jpg", scene);
+
+        var tijolo = new BABYLON.StandardMaterial("tijolo", scene);
+        tijolo.diffuseTexture = new BABYLON.Texture("texture/tijolo.jpeg", scene);
         
-        light3.material = yellowMaterial;
+        //light3.material = yellowMaterial;
         // Our built-in 'sphere' shape.
         var cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder",{height: 1.5, diameter:1}, scene);
         cylinder.position.y = 2.5;
-        cylinder.material = greyMaterial;
+        cylinder.material = tijolo;
+
         //var seila = BABYLON.MeshBuilder.CreateDecal
         var square1 = BABYLON.MeshBuilder.CreateBox("square2",{height: 1.5, width: 3, depth:1}, scene);
         square1.position.y = 1.5;
-        square1.material = yellowMaterial;
+        square1.material = tijolo;
         var square2 = BABYLON.MeshBuilder.CreateBox("square3",{height: 0.5, width: 5, depth:1}, scene);
         square2.position.y = 1;
-        square2.material = yellowMaterial;
+        square2.material = tijolo;
         var square3 = BABYLON.MeshBuilder.CreateBox("square2",{height: 1.5, width: 1, depth:3}, scene);
         square3.position.y = 1.5;
-        square3.material = yellowMaterial;
+        square3.material = tijolo;
         var square4 = BABYLON.MeshBuilder.CreateBox("square3",{height: 0.5, width: 1, depth:5}, scene);
         square4.position.y = 1;
-        square4.material = yellowMaterial;
+        square4.material = tijolo;
         
 /*
         var circle2 = BABYLON.MeshBuilder.CreateSphere("circle2", {diameterX: 0.3, diameterY: 0.6, diameterZ: 0.3}, scene);
@@ -102,11 +120,8 @@
         circle2.position.x = 7
         circle2.id = "sobe";
 */
-        var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
-        blueMaterial.diffuseColor = new BABYLON.Color3(0,0,0.8);
 
-        var greenMaterial = new BABYLON.StandardMaterial("myGreenMaterial", scene);
-        greenMaterial.diffuseColor = new BABYLON.Color3(0,0.5,0.2);
+        
 
         
         var water1 = createWater()
@@ -138,39 +153,134 @@
 
         var wall1 = BABYLON.MeshBuilder.CreateBox("wall1",{height: 3, width: 15, depth:1}, scene);
         wall1.position.z = -7.5;
-        wall1.material = greenMaterial;
+        wall1.material = cimento;
 
         var wall2 = BABYLON.MeshBuilder.CreateBox("wall2",{height: 3, width: 15, depth:1}, scene);
         wall2.position.z = 7.5;
-        wall2.material = greenMaterial;
+        wall2.material = cimento;
 
         var wall3 = BABYLON.MeshBuilder.CreateBox("wall3",{height: 3, width: 1, depth:15}, scene);
         wall3.position.x = 7.5;
-        wall3.material = greenMaterial;
+        wall3.material = cimento;
 
         var wall4 = BABYLON.MeshBuilder.CreateBox("wall4",{height: 3, width: 1, depth:15}, scene);
         wall4.position.x = -7.5;
-        wall4.material = greenMaterial;
+        wall4.material = cimento;
 
         // Our built-in 'ground' shape.
+
+        //AGUA DA FONTE
         var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 15, height: 15}, scene);
         ground.position.y = 0.8;
         
-        ground.material = blueMaterial;
+        ground.material = agua;
 
+        //CHAO DA FONTE
         var ground2 = BABYLON.MeshBuilder.CreateGround("ground2", {width: 15, height: 15}, scene);
         ground2.rotation.x = Math.PI ;
         ground2.position.y = -1.5;
-        ground2.material = greenMaterial;
+        ground2.material = cimento;
         return scene;
     };
+
+
+    function hora1()
+    {
+        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
+
+        //colcoar a luz no começo, angulo de 160 graus
+        //pouca quantidade de passaros
+
+        //criar uma esfera amarela simulando o sol???
+        return 0;
+
+    }
+
+    function hora2()
+    {
+        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
+        //colcoar a luz em cima, simulando o sol do meio dia 
+        //muitos passaros
+        return 0;
+        
+    }
+
+    function hora3()
+    {
+        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
+        //colocar a luz mais pra baixo e mais fraca, simluando o por do sol
+        //poucos passaros
+        return 0;
+    }
+
+    function menu()
+    {
+        
+        //mostrar o menu com as informações da aplicação 
+        //habilitar ou desabilitar o menu
+    }
+    //ESCOLHA DO HORÁRIO DO DIA
+    scene.actionManager = new BABYLON.ActionManager(scene);
+
+            scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(
+                BABYLON.ActionManager.OnKeyDownTrigger, function (evt) {
+                    var key = evt.sourceEvent.key;
+
+                    switch (key) {
+                        case '1': hora1(); break;
+                        case '2': hora2(); break;
+                        case '3': hora3(); break;
+                        case 'h': menu(); break;
+                    }
+
+                }
+             ));
+
+            
+    
+    
+    
+    function createMenu()
+{
+    var plane = BABYLON.Mesh.CreatePlane("plane", 60);
+    plane.parent = mesh;
+    plane.position.y = -30;
+    plane.position.x = -10;
+    plane.position.z = 35;
+    plane.rotation.y = -1.5708;
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
+
+    var label2 = new BABYLON.GUI.Rectangle("text label for " + mesh.name);
+    label2.height = "100px";
+    label2.alpha = 0.5;
+    label2.width = "250px";
+    label2.thickness = 0;
+    label2.linkOffsetY = 60;
+    label2.linkOffsetX = 200;
+    advancedTexture.addControl(label2);
+    label2.linkWithMesh(mesh);
+
+
+    var text2 = new BABYLON.GUI.TextBlock();
+    text2.text = "1 - Represeta 6:00 2 - Representa 12:00 3 - Representa 18:00" 
+    text2.color = "white";
+    text2.fontSize = 12;
+    text2.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    text2.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    text2.paddingTop = "10px";
+    text2.paddingLeft = "100px";
+    label2.addControl(text2);
+
+}
     
     function createWater(){
         var center1 = new BABYLON.Mesh("center1",scene);
         center1.position = new BABYLON.Vector3(3,2,0)
         
-        var blueMaterial = new BABYLON.StandardMaterial("myBlueMaterial", scene);
-        blueMaterial.diffuseColor = new BABYLON.Color3(0,0,1);
+        var agua = new BABYLON.StandardMaterial("palmeiras", scene);
+        agua.diffuseTexture = new BABYLON.Texture("texture/agua.jpg", scene);
+        
+
 
         var angle = 0;
         var incAngle = Math.PI / 2;
@@ -180,7 +290,7 @@
 
             var circle = BABYLON.MeshBuilder.CreateSphere("circle", {diameterX: 0.3, diameterY: 0.6, diameterZ: 0.3}, scene);
             
-            circle.material = blueMaterial;
+            circle.material = agua;
 
             var y = Math.cos(angle) * radius;
             var x = Math.sin(angle) * radius;
