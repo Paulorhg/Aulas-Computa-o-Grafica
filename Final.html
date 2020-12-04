@@ -62,18 +62,48 @@
 
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
+        
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
        // var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 40, 60), scene);
         //var light3 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(4, 2, 0), scene);
 
-        light2.diffuse = new BABYLON.Color3(1, 0.9, 0);
-        light2.specular = new BABYLON.Color3(1,0.77,0); 
-        light2.intensity = 0.9;
+        //CRIAR ESFERA
+        var sun = new BABYLON.StandardMaterial("sun", scene);
+        sun.diffuseTexture = new BABYLON.Texture("texture/sol.jpg", scene);
 
-        // Default intensity is 1. Let's dim the light a small amount
-        //light.intensity = 0.7;
+        var moon = new BABYLON.StandardMaterial("moon", scene);
+        moon.diffuseTexture = new BABYLON.Texture("texture/lua.jpg", scene);
+
+        //CRIAÇÃO DAS LUZES POR HORA DO DIA
+
+        var light1 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 15, 20), scene);
+        light1.diffuse = new BABYLON.Color3(1, 0.9, 0);
+        light1.specular = new BABYLON.Color3(1,0.77,0); 
+        light1.intensity = 0,9;
+
+        var light2 = new BABYLON.HemisphericLight("light2", new BABYLON.Vector3(0, 15, 0), scene);
+        light2.diffuse = new BABYLON.Color3(1, 0.8, 0.75);
+        light2.specular = new BABYLON.Color3(1,0.77,0); 
+        light2.intensity = 1;
+
+        var light3 = new BABYLON.HemisphericLight("light3", new BABYLON.Vector3(0, 15, -20), scene);
+        light3.diffuse = new BABYLON.Color3(1, 0.9, 0.4);
+        light3.specular = new BABYLON.Color3(1,0.77,0); 
+        light3.intensity = 0,6;
+
+        var sol = BABYLON.Mesh.CreateSphere("sol",0,2,scene);
+        sol.material = sun;
+
+        var lua = BABYLON.Mesh.CreateSphere("sol",0,2,scene);
+        lua.material = moon;
+
+        
+
+
+    //*/
+
+
 
         //TEXTURAS
 
@@ -105,27 +135,19 @@
         cylinder.material = tijolo;
 
         //var seila = BABYLON.MeshBuilder.CreateDecal
-        var square1 = BABYLON.MeshBuilder.CreateBox("square2",{height: 1.5, width: 3, depth:1}, scene);
+        var square1 = BABYLON.MeshBuilder.CreateBox("square1",{height: 1.5, width: 3, depth:1}, scene);
         square1.position.y = 1.5;
         square1.material = tijolo;
-        var square2 = BABYLON.MeshBuilder.CreateBox("square3",{height: 0.5, width: 5, depth:1}, scene);
+        var square2 = BABYLON.MeshBuilder.CreateBox("square2",{height: 0.5, width: 5, depth:1}, scene);
         square2.position.y = 1;
         square2.material = tijolo;
-        var square3 = BABYLON.MeshBuilder.CreateBox("square2",{height: 1.5, width: 1, depth:3}, scene);
+        var square3 = BABYLON.MeshBuilder.CreateBox("square3",{height: 1.5, width: 1, depth:3}, scene);
         square3.position.y = 1.5;
         square3.material = tijolo;
-        var square4 = BABYLON.MeshBuilder.CreateBox("square3",{height: 0.5, width: 1, depth:5}, scene);
+        var square4 = BABYLON.MeshBuilder.CreateBox("square4",{height: 0.5, width: 1, depth:5}, scene);
         square4.position.y = 1;
         square4.material = tijolo;
-        
-/*
-        var circle2 = BABYLON.MeshBuilder.CreateSphere("circle2", {diameterX: 0.3, diameterY: 0.6, diameterZ: 0.3}, scene);
-        circle2.position.y = 3;
-        circle2.position.x = 7
-        circle2.id = "sobe";
-*/
-
-        
+            
 
         
         var water1 = createWater()
@@ -187,26 +209,54 @@
         return scene;
     };
 
+    //var plane = BABYLON.Mesh.CreatePlane("plane", 60);
+    //plane.parent = mesh;
+    //plane.position.y = 0;
+    //plane.position.x = 20;
+    //plane.position.z = 0;
+    //plane.rotation.y = -1.5708;
+    //var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
+/*
+    var label2 = new BABYLON.GUI.Rectangle("Menu");
+    label2.height = "100px";
+    label2.alpha = 0.5;
+    label2.width = "250px";
+    label2.thickness = 0;
+    label2.linkOffsetY = 60;
+    label2.linkOffsetX = 200;
+    advancedTexture.addControl(label2);
+    label2.linkWithMesh(mesh);
+
+
+    var text2 = new BABYLON.GUI.TextBlock();
+    text2.text = "1 - Represeta 6:00 2 - Representa 12:00 3 - Representa 18:00" 
+    text2.color = "white";
+    text2.fontSize = 12;
+    text2.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    text2.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    text2.paddingTop = "10px";
+    text2.paddingLeft = "100px";
+    label2.addControl(text2);
+*/
 
 /*
     function hora1()
     {
-        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);//x,y,z
+        
 
-        //colcoar a luz no começo, angulo de 160 graus
-        //pouca quantidade de passaros
+        light1.setEnabled(true);
+        light2.setEnabled(false);
+        light3.setEnabled(false);
 
-        //criar uma esfera amarela simulando o sol???
-
-        //habilitar e desabilitar 
-        light2.setEnabled(true);//luz ligada
-        light2.setEnabled(false);//luz desligada
-
+        centerBird1.setEnable(false);
         centerBird2.setEnabled(true);
 
-        light2.diffuse = new BABYLON.Color3(1, 0.9, 0);
-        light2.specular = new BABYLON.Color3(1,0.77,0); 
-        light2.intensity = 0.9;
+        sol.position.y = 10 ;
+        sol.position.z = 30;
+        
+        lua.position.y = 5;
+        lua.position.z = -30;
+
         
         return 0;
 
@@ -214,18 +264,38 @@
 
     function hora2()
     {
-        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
-        //colcoar a luz em cima, simulando o sol do meio dia 
-        //muitos passaros
+        
+        light1.setEnabled(flase);
+        light2.setEnabled(true);
+        light3.setEnabled(false);
+
+        centerBird1.setEnable(true);
+        centerBird2.setEnabled(true);
+
+        sol.position.y = 20 ;
+        sol.position.z = 0;
+        
+        lua.position.y = 0;
+        lua.position.z = 0;
         return 0;
         
     }
 
     function hora3()
     {
-        var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, -3, 0), scene);
-        //colocar a luz mais pra baixo e mais fraca, simluando o por do sol
-        //poucos passaros
+
+         light1.setEnabled(false);
+        light2.setEnabled(false);
+        light3.setEnabled(true);
+
+        centerBird1.setEnable(false);
+        centerBird2.setEnabled(flase);
+
+        sol.position.y = 10 ;
+        sol.position.z = -21;
+        
+        lua.position.y = 10 ;
+        lua.position.z = 21;
         return 0;
     }
 
