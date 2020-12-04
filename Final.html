@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -104,6 +105,7 @@
 
 */
 
+        
 
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
@@ -144,8 +146,6 @@
 
 
     //*/
-
-
 
         //TEXTURAS
 
@@ -248,12 +248,9 @@
         ground2.rotation.x = Math.PI ;
         ground2.position.y = -1.5;
         ground2.material = cimento;
-        return scene;
-    };
-   
+        
 
-/*
-    function hora1()
+        function hora1()
     {
         
 
@@ -261,7 +258,7 @@
         light2.setEnabled(false);
         light3.setEnabled(false);
 
-        centerBird1.setEnable(false);
+        centerBird1.setEnabled(false);
         centerBird2.setEnabled(true);
 
         sol.position.y = 10 ;
@@ -278,11 +275,11 @@
     function hora2()
     {
         
-        light1.setEnabled(flase);
+        light1.setEnabled(false);
         light2.setEnabled(true);
         light3.setEnabled(false);
 
-        centerBird1.setEnable(true);
+        centerBird1.setEnabled(true);
         centerBird2.setEnabled(true);
 
         sol.position.y = 20 ;
@@ -297,12 +294,12 @@
     function hora3()
     {
 
-         light1.setEnabled(false);
+        light1.setEnabled(false);
         light2.setEnabled(false);
         light3.setEnabled(true);
 
-        centerBird1.setEnable(false);
-        centerBird2.setEnabled(flase);
+        centerBird1.setEnabled(false);
+        centerBird2.setEnabled(false);
 
         sol.position.y = 10 ;
         sol.position.z = -21;
@@ -319,26 +316,31 @@
         //habilitar ou desabilitar o menu
     }
 
-    //ESCOLHA DO HORÁRIO DO DIA
-    scene.actionManager = new BABYLON.ActionManager(scene);
+        scene.actionManager = new BABYLON.ActionManager(scene);
+        scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(
+            BABYLON.ActionManager.OnKeyDownTrigger, function (evt) {
+                var key = evt.sourceEvent.key;
 
-            scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(
-                BABYLON.ActionManager.OnKeyDownTrigger, function (evt) {
-                    var key = evt.sourceEvent.key;
-
-                    switch (key) {
-                        case '1': hora1(); break;
-                        case '2': hora2(); break;
-                        case '3': hora3(); break;
-                        case 'h': menu(); break;
-                    }
-
+                switch (key) {
+                    case '1': hora1(); break;
+                    case '2': hora2(); break;
+                    case '3': hora3(); break;
+                    case 'h': menu(); break;
                 }
-             ));
 
-            
+            }
+        ));
+
+
+
+
+        return scene;
+    };
+
+    //ESCOLHA DO HORÁRIO DO DIA
+             
     
-    
+    /*  
     
     function createMenu()
 {
