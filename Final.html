@@ -53,9 +53,6 @@
         var scene = new BABYLON.Scene(engine);
 
         // This creates and positions a free camera (non-mesh)
-        var scene = new BABYLON.Scene(engine);
-
-        // This creates and positions a free camera (non-mesh)
         var camera = new BABYLON.ArcRotateCamera("camera1",0,5,30, new BABYLON.Vector3(-30, 15, -10), scene);
 
         // This targets the camera to scene origin
@@ -248,73 +245,79 @@
         ground2.rotation.x = Math.PI ;
         ground2.position.y = -1.5;
         ground2.material = cimento;
+
+
+        //Chao
+        var ground3 = BABYLON.MeshBuilder.CreateGround("ground3", {width: 40, height: 40}, scene);
+        ground3.position.y = -1.5;
+        //ground3.material = cimento;
         
 
         function hora1()
-    {
-        
+        {
+            
 
-        light1.setEnabled(true);
-        light2.setEnabled(false);
-        light3.setEnabled(false);
+            light1.setEnabled(true);
+            light2.setEnabled(false);
+            light3.setEnabled(false);
 
-        centerBird1.setEnabled(false);
-        centerBird2.setEnabled(true);
+            centerBird1.setEnabled(false);
+            centerBird2.setEnabled(true);
 
-        sol.position.y = 10 ;
-        sol.position.z = 30;
-        
-        lua.position.y = 5;
-        lua.position.z = -30;
+            sol.position.y = 10 ;
+            sol.position.z = 30;
+            
+            lua.position.y = 5;
+            lua.position.z = -30;
 
-        
-        return 0;
+            
+            return 0;
 
-    }
+        }
 
-    function hora2()
-    {
-        
-        light1.setEnabled(false);
-        light2.setEnabled(true);
-        light3.setEnabled(false);
+        function hora2()
+        {
+            
+            light1.setEnabled(false);
+            light2.setEnabled(true);
+            light3.setEnabled(false);
 
-        centerBird1.setEnabled(true);
-        centerBird2.setEnabled(true);
+            centerBird1.setEnabled(true);
+            centerBird2.setEnabled(true);
 
-        sol.position.y = 20 ;
-        sol.position.z = 0;
-        
-        lua.position.y = 0;
-        lua.position.z = 0;
-        return 0;
-        
-    }
+            sol.position.y = 20 ;
+            sol.position.z = 0;
+            
+            lua.position.y = 0;
+            lua.position.z = 0;
+            return 0;
+            
+        }
 
-    function hora3()
-    {
+        function hora3()
+        {
 
-        light1.setEnabled(false);
-        light2.setEnabled(false);
-        light3.setEnabled(true);
+            light1.setEnabled(false);
+            light2.setEnabled(false);
+            light3.setEnabled(true);
 
-        centerBird1.setEnabled(false);
-        centerBird2.setEnabled(false);
+            centerBird1.setEnabled(false);
+            centerBird2.setEnabled(false);
 
-        sol.position.y = 10 ;
-        sol.position.z = -21;
-        
-        lua.position.y = 10 ;
-        lua.position.z = 21;
-        return 0;
-    }
+            sol.position.y = 10 ;
+            sol.position.z = -21;
+            
+            lua.position.y = 10 ;
+            lua.position.z = 21;
+            return 0;
+        }
 
-    function menu()
-    {
-        
-        //mostrar o menu com as informações da aplicação 
-        //habilitar ou desabilitar o menu
-    }
+        function menu()
+        {
+            
+            //mostrar o menu com as informações da aplicação 
+            //habilitar ou desabilitar o menu
+        }
 
         scene.actionManager = new BABYLON.ActionManager(scene);
         scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(
@@ -331,7 +334,13 @@
             }
         ));
 
-
+        scene.onPointerDown = function (evt, pickResult){
+        if(pickResult.hit){
+            console.log(pickResult.pickedPoint.x)
+            console.log(pickResult.pickedPoint.z)
+            console.log(pickResult.pickedPoint.y)
+        }
+    }
 
 
         return scene;
