@@ -55,7 +55,7 @@
         var scene = new BABYLON.Scene(engine);
 
         // This creates and positions a free camera (non-mesh)
-        var camera = new BABYLON.ArcRotateCamera("camera1",0,5,30, new BABYLON.Vector3(0, 5, -10), scene);
+        var camera = new BABYLON.ArcRotateCamera("camera1",0,5,30, new BABYLON.Vector3(-30, 15, -10), scene);
 
         // This targets the camera to scene origin
         camera.setTarget(BABYLON.Vector3.Zero());
@@ -63,6 +63,48 @@
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
         
+        //LABEL COM OS NOMES
+        var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myGUI");
+        
+        var nomes = new BABYLON.GUI.TextBlock();
+        nomes.text = "Paulo Horta 180173 \nPedro Vitro 180122";
+        nomes.color = "white";
+        nomes.fontSize = 24;
+        advancedTexture.addControl(nomes);   
+        nomes.top = -400;
+        nomes.left = -700;
+        //nomes.height = "40px";
+        //nomes.width = 0.1;
+
+        //TENTATIVA DE CRIAR UM QUADRO E O TEXTO DO MENU!!
+
+/*
+       var ground = BABYLON.Mesh.CreateGround("ground1", 26, 26, 2, scene);        
+       ground.rotation = new BABYLON.Vector3(5, 0, 0);
+       ground.position = new BABYLON.Vector3(0, 3, 0);
+       var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(ground, 1024, 1024); 
+
+        var quadro = new BABYLON.GUI.Rectangle("rect");
+        quadro.background = "black";
+        quadro.color = "yellow";
+        quadro.width = "4px";
+        quadro.height = "2px";
+        quadro.linkWithMesh(mesh);
+
+        var menu1 = new BABYLON.GUI.TextBlock();
+        menu1.text = "Horas 1 2 3 4 5 6";
+        menu1.color = "white";
+        menu1.fonrSize = 24;
+        advancedTexture.addControl(menu1);
+        menu1.height = "100px";
+        menu1.background = "blue";
+        rectangle.addControl(menu1);
+
+
+
+*/
+
+
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
        // var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
@@ -208,36 +250,7 @@
         ground2.material = cimento;
         return scene;
     };
-
-    //var plane = BABYLON.Mesh.CreatePlane("plane", 60);
-    //plane.parent = mesh;
-    //plane.position.y = 0;
-    //plane.position.x = 20;
-    //plane.position.z = 0;
-    //plane.rotation.y = -1.5708;
-    //var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
-/*
-    var label2 = new BABYLON.GUI.Rectangle("Menu");
-    label2.height = "100px";
-    label2.alpha = 0.5;
-    label2.width = "250px";
-    label2.thickness = 0;
-    label2.linkOffsetY = 60;
-    label2.linkOffsetX = 200;
-    advancedTexture.addControl(label2);
-    label2.linkWithMesh(mesh);
-
-
-    var text2 = new BABYLON.GUI.TextBlock();
-    text2.text = "1 - Represeta 6:00 2 - Representa 12:00 3 - Representa 18:00" 
-    text2.color = "white";
-    text2.fontSize = 12;
-    text2.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    text2.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-    text2.paddingTop = "10px";
-    text2.paddingLeft = "100px";
-    label2.addControl(text2);
-*/
+   
 
 /*
     function hora1()
