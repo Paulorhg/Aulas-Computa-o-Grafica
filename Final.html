@@ -121,17 +121,28 @@
         var light1 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 15, 20), scene);
         light1.diffuse = new BABYLON.Color3(1, 0.9, 0);
         light1.specular = new BABYLON.Color3(1,0.77,0); 
-        light1.intensity = 0,9;
+        light1.intensity = 0.9;
+
+        var spot1_lua = new BABYLON.SpotLight("spotLight", new BABYLON.Vector3(0, 5, -25), new BABYLON.Vector3(0, 5, -30), Math.PI /2, 2, scene);
+        spot1_lua.diffuse = new BABYLON.Color3(1, 1, 1);
+        spot1_lua.specular = new BABYLON.Color3(1, 1, 1);
+        spot1_lua.intensity = 1;
+
+        var spot3_lua = new BABYLON.SpotLight("spotLight2", new BABYLON.Vector3(0, 7.5, 25), new BABYLON.Vector3(0, 7.5, 30), Math.PI/2 ,10 , scene);
+        spot3_lua.diffuse = new BABYLON.Color3(1, 1, 1);
+        spot3_lua.specular = new BABYLON.Color3(1, 1, 1);
+        spot3_lua.intensity = 1;
+
 
         var light2 = new BABYLON.HemisphericLight("light2", new BABYLON.Vector3(0, 15, 0), scene);
         light2.diffuse = new BABYLON.Color3(1, 0.8, 0.75);
         light2.specular = new BABYLON.Color3(1,0.77,0); 
         light2.intensity = 1;
 
-        var light3 = new BABYLON.HemisphericLight("light3", new BABYLON.Vector3(0, 15, -20), scene);
+        var light3 = new BABYLON.PointLight("light3", new BABYLON.Vector3(-5, 15, -20), scene);
         light3.diffuse = new BABYLON.Color3(1, 0.9, 0.4);
         light3.specular = new BABYLON.Color3(1,0.77,0); 
-        light3.intensity = 0,6;
+        light3.intensity = 0.6;
 
         var sol = BABYLON.Mesh.CreateSphere("sol",0,2,scene);
         sol.material = sun;
@@ -304,13 +315,13 @@
             centerBird1.setEnabled(false);
             centerBird2.setEnabled(false);
 
-            sol.position.y = 10 ;
-            sol.position.z = -21;
-            
-            lua.position.y = 10 ;
-            lua.position.z = 21;
-            return 0;
-        }
+        sol.position.y = 7.5 ;
+        sol.position.z = -30;
+        
+        lua.position.y = 7.5 ;
+        lua.position.z = 30;
+        return 0;
+    }
 
         function menu()
         {
