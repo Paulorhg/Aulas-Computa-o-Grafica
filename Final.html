@@ -490,6 +490,62 @@
         return centerBird1;
     }
 
+    function createBird(){        
+
+        centerBird1 = new BABYLON.Mesh("centerBird1", scene);
+        centerBird1.position.y = 20;
+
+        var angle = 0;
+        var incAngle = Math.PI / 2;
+        var radius = 7.5;
+
+        var brownMaterial = new BABYLON.StandardMaterial("myBrownMaterial", scene);
+        brownMaterial.diffuseColor = new BABYLON.Color3(0.5,0.2,0.1);
+
+        var brown2Material = new BABYLON.StandardMaterial("myBrownMaterial2", scene);
+        brown2Material.diffuseColor = new BABYLON.Color3(0.3,0.2,0.1);
+
+        var blackMaterial = new BABYLON.StandardMaterial("myBlackMaterial", scene);
+        blackMaterial.diffuseColor = new BABYLON.Color3(0.1,0.1,0.1);
+
+        for (var i = 0; i < 4; i++) {
+
+            var birdBody = BABYLON.MeshBuilder.CreateSphere("birdBody", {diameterX: 1, diameterY: 0.5, diameterZ: 0.5}, scene);
+            birdBody.id = "birdBody";
+            var birdHead = BABYLON.MeshBuilder.CreateSphere("birdHead", {diameter: 0.35}, scene);
+            birdHead.material = brown2Material;
+            if(i%2 != 0)
+                birdHead.position.x = 0.5;
+            else
+                birdHead.position.x = -0.5;
+            birdBody.addChild(birdHead);
+            birdBody.material = brownMaterial;
+            var asa1 = BABYLON.MeshBuilder.CreateBox("asa1", {height: 0.05, width: 0.4, depth: 0.6})
+            asa1.position.z = 0.5;
+            asa1.material = blackMaterial;
+            birdBody.addChild(asa1);
+
+            var asa2 = BABYLON.MeshBuilder.CreateBox("asa2", {height: 0.05, width: 0.4, depth: 0.6})
+            asa2.position.z = -0.5;
+            asa2.material = blackMaterial;
+            birdBody.addChild(asa2);
+
+            var x = Math.cos(angle) * radius;
+            var z = Math.sin(angle) * radius;
+            angle = angle + incAngle;
+
+            birdBody.position.x = x;
+            birdBody.position.z = z;
+            birdBody.position.y = 7;
+            birdBody.rotation.y = angle;
+
+            centerBird1.addChild(birdBody)
+        }
+        return centerBird1;
+}
+
+
+
     function createPipoca(x, y, z){
         var center = new BABYLON.Mesh("centerPipoca", scene);
 
