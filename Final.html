@@ -147,7 +147,7 @@
         var sol = BABYLON.Mesh.CreateSphere("sol",0,2,scene);
         sol.material = sun;
 
-        var lua = BABYLON.Mesh.CreateSphere("sol",0,2,scene);
+        var lua = BABYLON.Mesh.CreateSphere("lua",0,1,scene);
         lua.material = moon;
 
         
@@ -177,6 +177,9 @@
 
         var tijolo = new BABYLON.StandardMaterial("tijolo", scene);
         tijolo.diffuseTexture = new BABYLON.Texture("texture/tijolo.jpeg", scene);
+
+        var chao = new BABYLON.StandardMaterial("chao", scene);
+        chao.diffuseTexture = new BABYLON.Texture("texture/chao.jpg", scene);
         
         //light3.material = yellowMaterial;
         // Our built-in 'sphere' shape.
@@ -261,6 +264,7 @@
         //Chao
         var ground3 = BABYLON.MeshBuilder.CreateGround("ground3", {width: 40, height: 40}, scene);
         ground3.position.y = -1.5;
+        ground3.diffuseTexture = chao;
         //ground3.material = cimento;
         
 
