@@ -264,7 +264,8 @@
         //Chao
         var ground3 = BABYLON.MeshBuilder.CreateGround("ground3", {width: 40, height: 40}, scene);
         ground3.position.y = -1.5;
-        ground3.diffuseTexture = chao;
+        ground3.material = chao;
+
         //ground3.material = cimento;
         
 
