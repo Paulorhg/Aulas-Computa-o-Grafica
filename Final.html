@@ -349,11 +349,14 @@
             }
         ));
 
+        var clickX, clickZ, clickY;
+
         scene.onPointerDown = function (evt, pickResult){
-        if(pickResult.hit){
-            console.log(pickResult.pickedPoint.x)
-            console.log(pickResult.pickedPoint.z)
-            console.log(pickResult.pickedPoint.y)
+        if(pickResult.hit && pickResult.pickedMesh.name == 'ground3'){
+            clickX = pickResult.pickedPoint.x;
+            clickZ = pickResult.pickedPoint.z
+            clickY = pickResult.pickedPoint.y
+            createPipoca(clickX, clickY, clickZ)
         }
     }
 
@@ -485,6 +488,26 @@
             centerBird1.addChild(birdBody)
         }
         return centerBird1;
+    }
+
+    function createPipoca(x, y, z){
+        var center = new BABYLON.Mesh("centerPipoca", scene);
+
+        var bola1 = BABYLON.MeshBuilder.CreateSphere("bola1", {diameter: 0.25}, scene);
+        bola1.position.x = 0.15;
+        var bola2 = BABYLON.MeshBuilder.CreateSphere("bola2", {diameter: 0.25}, scene);
+        bola2.position.y = 0.15;
+        var bola3 = BABYLON.MeshBuilder.CreateSphere("bola3", {diameter: 0.25}, scene);
+        bola3.position.z = 0.15;
+
+        center.addChild(bola1);
+        center.addChild(bola2);
+        center.addChild(bola3);
+
+        center.position.x = x;
+        center.position.y = y+0.2;
+        center.position.z = z;
+        center.rotation.z = Math.PI/3
     }
     
     function loop(){
