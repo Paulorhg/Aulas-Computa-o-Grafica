@@ -350,16 +350,23 @@
             }
         ));
 
+
+        var centerBirdPipoca = createBird2();
+
         var clickX, clickZ, clickY;
 
         scene.onPointerDown = function (evt, pickResult){
-        if(pickResult.hit && pickResult.pickedMesh.name == 'ground3'){
-            clickX = pickResult.pickedPoint.x;
-            clickZ = pickResult.pickedPoint.z
-            clickY = pickResult.pickedPoint.y
-            createPipoca(clickX, clickY, clickZ)
+            if(pickResult.hit && pickResult.pickedMesh.name == 'ground3'){
+                clickX = pickResult.pickedPoint.x;
+                console.log(pickResult.pickedPoint.x)
+                clickZ = pickResult.pickedPoint.z
+                console.log(pickResult.pickedPoint.z)
+                clickY = pickResult.pickedPoint.y
+                createPipoca(clickX, clickY, clickZ)
+            }
         }
-    }
+
+        //if(clickX < )
 
 
         return scene;
@@ -491,10 +498,10 @@
         return centerBird1;
     }
 
-    function createBird(){        
+    function createBird2(){
 
-        centerBird1 = new BABYLON.Mesh("centerBird1", scene);
-        centerBird1.position.y = 20;
+        centerBirdPipoca = new BABYLON.Mesh("centerBirdPipoca", scene);
+        centerBirdPipoca.position.y = 3;
 
         var angle = 0;
         var incAngle = Math.PI / 2;
@@ -512,7 +519,7 @@
         for (var i = 0; i < 4; i++) {
 
             var birdBody = BABYLON.MeshBuilder.CreateSphere("birdBody", {diameterX: 1, diameterY: 0.5, diameterZ: 0.5}, scene);
-            birdBody.id = "birdBody";
+            birdBody.id = "birdPipoca" + i;
             var birdHead = BABYLON.MeshBuilder.CreateSphere("birdHead", {diameter: 0.35}, scene);
             birdHead.material = brown2Material;
             if(i%2 != 0)
@@ -537,12 +544,12 @@
 
             birdBody.position.x = x;
             birdBody.position.z = z;
-            birdBody.position.y = 7;
-            birdBody.rotation.y = angle;
+            birdBody.position.y = 1.75;
+            birdBody.rotation.y = angle*1.5;
 
-            centerBird1.addChild(birdBody)
+            centerBirdPipoca.addChild(birdBody)
         }
-        return centerBird1;
+        return centerBirdPipoca;
 }
 
 
