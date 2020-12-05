@@ -65,49 +65,21 @@
         var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myGUI");
         
         var nomes = new BABYLON.GUI.TextBlock();
-        nomes.text = "Paulo Horta 180173 \nPedro Vitro 180122";
+        nomes.text = "Paulo Horta 180173 \nPedro Vitro 180122\n\nPara ativar ou desativar o menu pressione a tecla H\n";
         nomes.color = "white";
         nomes.fontSize = 24;
         advancedTexture.addControl(nomes);   
         nomes.top = -400;
-        nomes.left = -700;
-        //nomes.height = "40px";
-        //nomes.width = 0.1;
+        nomes.left = 750;
 
-        //TENTATIVA DE CRIAR UM QUADRO E O TEXTO DO MENU!!
+        var desc = new BABYLON.GUI.TextBlock();
+        desc.text = "***SIMULAÇÃO DO PASSAR DO DIA NA FONTE DE SÃO PAULO***\n\n [1] - Representa o nascer do sol.\n{Horário estimado 06:00}\n\n[2] - Representa a chegada do meio do dia.\n{Horário estimado 12:00}\n\n[3] - Representa o pôr do sol.\n{Horário estimado 18:00}\n\nNote que os pássaros se movimentam junto com o Sol...\n\nComo em toda boa praça, é possível alimentar os passarinhos,\nbasta clicar no chão ao lado da fonte que você jogará uma pipoca!\n\n";
+        desc.color = "white";
+        desc.fontSize = 20;
+        advancedTexture.addControl(desc);   
+        desc.top = -250;
+        desc.left = -800;
 
-/*
-       var ground = BABYLON.Mesh.CreateGround("ground1", 26, 26, 2, scene);        
-       ground.rotation = new BABYLON.Vector3(5, 0, 0);
-       ground.position = new BABYLON.Vector3(0, 3, 0);
-       var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(ground, 1024, 1024); 
-
-        var quadro = new BABYLON.GUI.Rectangle("rect");
-        quadro.background = "black";
-        quadro.color = "yellow";
-        quadro.width = "4px";
-        quadro.height = "2px";
-        quadro.linkWithMesh(mesh);
-
-        var menu1 = new BABYLON.GUI.TextBlock();
-        menu1.text = "Horas 1 2 3 4 5 6";
-        menu1.color = "white";
-        menu1.fonrSize = 24;
-        advancedTexture.addControl(menu1);
-        menu1.height = "100px";
-        menu1.background = "blue";
-        rectangle.addControl(menu1);
-
-
-
-*/
-
-        
-
-
-        // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-       // var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-        //var light3 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(4, 2, 0), scene);
 
         //CRIAR ESFERA
         var sun = new BABYLON.StandardMaterial("sun", scene);
@@ -328,11 +300,16 @@
         return 0;
     }
 
-        function menu()
+        var m = true;
+
+        function menu(m,desc)
         {
             
-            //mostrar o menu com as informações da aplicação 
-            //habilitar ou desabilitar o menu
+            m = !m;
+            desc.setEnabled(m);
+
+            return m;
+              
         }
 
         scene.actionManager = new BABYLON.ActionManager(scene);
@@ -344,7 +321,7 @@
                     case '1': hora1(); break;
                     case '2': hora2(); break;
                     case '3': hora3(); break;
-                    case 'h': menu(); break;
+                    case 'H': m = menu(m,desc); break;
                 }
 
             }
@@ -371,45 +348,9 @@
 
         return scene;
     };
-
-    //ESCOLHA DO HORÁRIO DO DIA
              
     
-    /*  
-    
-    function createMenu()
-{
-    var plane = BABYLON.Mesh.CreatePlane("plane", 60);
-    plane.parent = mesh;
-    plane.position.y = -30;
-    plane.position.x = -10;
-    plane.position.z = 35;
-    plane.rotation.y = -1.5708;
-    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
 
-    var label2 = new BABYLON.GUI.Rectangle("text label for " + mesh.name);
-    label2.height = "100px";
-    label2.alpha = 0.5;
-    label2.width = "250px";
-    label2.thickness = 0;
-    label2.linkOffsetY = 60;
-    label2.linkOffsetX = 200;
-    advancedTexture.addControl(label2);
-    label2.linkWithMesh(mesh);
-
-
-    var text2 = new BABYLON.GUI.TextBlock();
-    text2.text = "1 - Represeta 6:00 2 - Representa 12:00 3 - Representa 18:00" 
-    text2.color = "white";
-    text2.fontSize = 12;
-    text2.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    text2.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-    text2.paddingTop = "10px";
-    text2.paddingLeft = "100px";
-    label2.addControl(text2);
-
-}
-    */
     function createWater(){
         var center1 = new BABYLON.Mesh("center1",scene);
         center1.position = new BABYLON.Vector3(3,2,0)
