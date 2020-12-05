@@ -330,22 +330,42 @@
 
         var centerBirdPipoca = createBird2();
 
-        var clickX, clickZ, clickY;
+        var clickX, clickZ, clickY, passaro;
 
         scene.onPointerDown = function (evt, pickResult){
             if(pickResult.hit && pickResult.pickedMesh.name == 'ground3'){
                 clickX = pickResult.pickedPoint.x;
-                console.log(pickResult.pickedPoint.x)
+                console.log(clickX)
                 clickZ = pickResult.pickedPoint.z
                 console.log(pickResult.pickedPoint.z)
                 clickY = pickResult.pickedPoint.y
                 createPipoca(clickX, clickY, clickZ)
+                if(clickX < -8 && clickZ > -7){
+                    passaro = scene.getMeshByID('birdPipoca2')
+                    console.log('Passou')
+                    animacaoPassaro(passaro, clickX, clickZ);
+                }
+                if(clickX < 8 && clickZ <= -7){
+                    passaro = scene.getMeshByID('birdPipoca3')
+                    console.log('Passou')
+                    animacaoPassaro(passaro, clickX, clickZ);
+                }
+                if(clickX > -8 && clickZ > 7){
+                    passaro = scene.getMeshByID('birdPipoca1')
+                    console.log('Passou')
+                    animacaoPassaro(passaro, clickX, clickZ);
+                }
+                if(clickX > 8 && clickZ <= 7){
+                    passaro = scene.getMeshByID('birdPipoca0')
+                    console.log('Passou')
+                    animacaoPassaro(passaro, clickX, clickZ);
+                }
             }
         }
+        
 
-        //if(clickX < )
-
-
+        // var passaro2 = scene.getMeshByID('birdPipoca2')
+        // passaro2.position.y = 2;
         return scene;
     };
              
@@ -493,8 +513,6 @@
         return centerBirdPipoca;
 }
 
-
-
     function createPipoca(x, y, z){
         var center = new BABYLON.Mesh("centerPipoca", scene);
 
@@ -515,6 +533,43 @@
         center.rotation.z = Math.PI/3
     }
     
+    function animacaoPassaro(passaro, clickX, clickZ){
+        var xInicial = passaro.position.x;
+        var yInicial = passaro.position.y;
+        var zInicial = passaro.position.z;
+
+        var renderMovimento = function () {
+            scene.render();
+
+            if (passaro.position.x > clickX) {
+                incX = -0.06;
+            }
+            else {
+                incX = 0.06;
+            }
+
+            if (passaro.position.z > clickZ) {
+                incZ = -0.06;
+            }
+            else {
+                incZ = 0.06;
+            }
+
+            if (passaro.position.y > -4) {
+                incY = -0.06;
+            }
+            else {
+                incY = 0.06;
+            }
+
+            passaro.position.x += incX;
+            passaro.position.z += incZ;
+            passaro.position.y += incY;
+
+        };
+        engine.runRenderLoop(renderMovimento);
+    }
+
     function loop(){
 
         var centersZ = scene.getMeshesByID("centerZ");
