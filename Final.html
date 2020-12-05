@@ -43,7 +43,7 @@
     <script>
 
         var canvas = document.getElementById("renderCanvas");
-        var m = true;
+        var m = false;
         var engine = null;
         var scene = null;
         var sceneToRender = null;
@@ -304,7 +304,16 @@
         return 0;
     }
 
-        
+        function criar(advancedTexture2)
+        {
+            var desc = new BABYLON.GUI.TextBlock();
+            desc.text = "***SIMULAÇÃO DO PASSAR DO DIA NA FONTE DE SÃO PAULO***\n\n [1] - Representa o nascer do sol.\n{Horário estimado 06:00}\n\n[2] - Representa a chegada do meio do dia.\n{Horário estimado 12:00}\n\n[3] - Representa o pôr do sol.\n{Horário estimado 18:00}\n\nNote que os pássaros se movimentam junto com o Sol...\n\nComo em toda boa praça, é possível alimentar os passarinhos,\nbasta clicar no chão ao lado da fonte que você jogará uma pipoca!\n\n";
+            desc.color = "white";
+            desc.fontSize = 20;
+            advancedTexture2.addControl(desc);   
+            desc.top = -250;
+            desc.left = -800;
+        }
 /*
         function menu(m,advancedTexture2)
         {
@@ -331,10 +340,13 @@
                     case '3': hora3(); break;
                     case 'h':
                         m = !m;
-                        if(!m)
-                         advancedTexture2.scale(1000);
+                        if(m)
+                         {
+                            advancedTexture2.width = "50px";
+                            advancedTexture2.height = "50px";
+                         }
                         else
-                         advancedTexture2.scale(0.1);
+                         advancedTexture2.scaleTo(1,1);
                             
                                
                      break;
