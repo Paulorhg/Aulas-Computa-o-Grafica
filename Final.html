@@ -43,7 +43,7 @@
     <script>
 
         var canvas = document.getElementById("renderCanvas");
-
+        var m = true;
         var engine = null;
         var scene = null;
         var sceneToRender = null;
@@ -63,6 +63,7 @@
         
         //LABEL COM OS NOMES
         var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myGUI");
+        //var advancedTexture3 = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myGUI");
         
         var nomes = new BABYLON.GUI.TextBlock();
         nomes.text = "Paulo Horta 180173 \nPedro Vitro 180122\n\nPara ativar ou desativar o menu pressione a tecla H\n";
@@ -72,13 +73,15 @@
         nomes.top = -400;
         nomes.left = 750;
 
+        var advancedTexture2 = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myGUI");
+        
         var desc = new BABYLON.GUI.TextBlock();
-        desc.text = "***SIMULAÇÃO DO PASSAR DO DIA NA FONTE DE SÃO PAULO***\n\n [1] - Representa o nascer do sol.\n{Horário estimado 06:00}\n\n[2] - Representa a chegada do meio do dia.\n{Horário estimado 12:00}\n\n[3] - Representa o pôr do sol.\n{Horário estimado 18:00}\n\nNote que os pássaros se movimentam junto com o Sol...\n\nComo em toda boa praça, é possível alimentar os passarinhos,\nbasta clicar no chão ao lado da fonte que você jogará uma pipoca!\n\n";
-        desc.color = "white";
-        desc.fontSize = 20;
-        advancedTexture.addControl(desc);   
-        desc.top = -250;
-        desc.left = -800;
+            desc.text = "***SIMULAÇÃO DO PASSAR DO DIA NA FONTE DE SÃO PAULO***\n\n [1] - Representa o nascer do sol.\n{Horário estimado 06:00}\n\n[2] - Representa a chegada do meio do dia.\n{Horário estimado 12:00}\n\n[3] - Representa o pôr do sol.\n{Horário estimado 18:00}\n\nNote que os pássaros se movimentam junto com o Sol...\n\nComo em toda boa praça, é possível alimentar os passarinhos,\nbasta clicar no chão ao lado da fonte que você jogará uma pipoca!\n\n";
+            desc.color = "white";
+            desc.fontSize = 20;
+            advancedTexture2.addControl(desc);   
+            desc.top = -250;
+            desc.left = -800;
 
 
         //CRIAR ESFERA
@@ -240,6 +243,7 @@
 
         //ground3.material = cimento;
         
+       
 
         function hora1()
         {
@@ -300,17 +304,21 @@
         return 0;
     }
 
-        var m = true;
-
-        function menu(m,desc)
+        
+/*
+        function menu(m,advancedTexture2)
         {
             
             m = !m;
-            desc.setEnabled(m);
+            if(m)
+                criar(advancedTexture2);
+            else
+                apagar(advancedTexture2);
 
             return m;
               
         }
+    */
 
         scene.actionManager = new BABYLON.ActionManager(scene);
         scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(
@@ -321,7 +329,16 @@
                     case '1': hora1(); break;
                     case '2': hora2(); break;
                     case '3': hora3(); break;
-                    case 'H': m = menu(m,desc); break;
+                    case 'h':
+                        m = !m;
+                        if(!m)
+                         advancedTexture2.scale(1000);
+                        else
+                         advancedTexture2.scale(0.1);
+                            
+                               
+                     break;
+                     
                 }
 
             }
